@@ -6,10 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b92a52b1-02b6-4ee4-b3f3-975ab08961fe" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/library.db" beforeDir="false" afterPath="$PROJECT_DIR$/library.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Library.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Library.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/solirius/advanced/library/MainTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/solirius/advanced/library/MainTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +39,10 @@
     "JUnit.LibraryTest.whenBorrowingBook_returnsFalse_whenSqlExceptionIsThrown.executor": "Run",
     "JUnit.LibraryTest.whenBorrowingBook_tests_sqlExceptionIsThrown.executor": "Debug",
     "JUnit.LibraryTest.whenReturningBook_returnsFalse_whenSqlExceptionIsThrown.executor": "Run",
+    "JUnit.MainTest.executor": "Run",
+    "JUnit.MainTest.testMain_ViewAllBooks_SortedInvalid.executor": "Run",
+    "JUnit.MainTest.testMain_ViewAvailableBooks_SortedByTitle.executor": "Run",
+    "JUnit.MainTest.testMain_ViewAvailableBooks_SortedInvalid.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
@@ -47,7 +53,7 @@
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.MainTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.solirius.advanced.library.Main" />
       <module name="java-guild-candidate-test" />
@@ -76,7 +82,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LibraryTest.whenBorrowingBook_returnsFalse_whenSqlExceptionIsThrown" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MainTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-guild-candidate-test" />
       <extension name="coverage">
         <pattern>
@@ -85,14 +91,29 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.solirius.advanced.library" />
-      <option name="MAIN_CLASS_NAME" value="com.solirius.advanced.library.LibraryTest" />
-      <option name="METHOD_NAME" value="whenBorrowingBook_returnsFalse_whenSqlExceptionIsThrown" />
+      <option name="MAIN_CLASS_NAME" value="com.solirius.advanced.library.MainTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainTest.testMain_ViewAllBooks_SortedInvalid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-guild-candidate-test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.solirius.advanced.library.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.solirius.advanced.library" />
+      <option name="MAIN_CLASS_NAME" value="com.solirius.advanced.library.MainTest" />
+      <option name="METHOD_NAME" value="testMain_ViewAllBooks_SortedInvalid" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LibraryTest.whenBorrowingBook_tests_sqlExceptionIsThrown" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MainTest.testMain_ViewAvailableBooks_SortedInvalid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-guild-candidate-test" />
       <extension name="coverage">
         <pattern>
@@ -101,24 +122,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.solirius.advanced.library" />
-      <option name="MAIN_CLASS_NAME" value="com.solirius.advanced.library.LibraryTest" />
-      <option name="METHOD_NAME" value="whenBorrowingBook_tests_sqlExceptionIsThrown" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LibraryTest.whenReturningBook_returnsFalse_whenSqlExceptionIsThrown" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="java-guild-candidate-test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.solirius.advanced.library.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.solirius.advanced.library" />
-      <option name="MAIN_CLASS_NAME" value="com.solirius.advanced.library.LibraryTest" />
-      <option name="METHOD_NAME" value="whenReturningBook_returnsFalse_whenSqlExceptionIsThrown" />
+      <option name="MAIN_CLASS_NAME" value="com.solirius.advanced.library.MainTest" />
+      <option name="METHOD_NAME" value="testMain_ViewAvailableBooks_SortedInvalid" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -173,11 +178,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.MainTest" />
+        <item itemvalue="JUnit.MainTest.testMain_ViewAllBooks_SortedInvalid" />
         <item itemvalue="JUnit.LibraryTest" />
-        <item itemvalue="JUnit.LibraryTest.whenReturningBook_returnsFalse_whenSqlExceptionIsThrown" />
-        <item itemvalue="JUnit.LibraryTest.whenBorrowingBook_returnsFalse_whenSqlExceptionIsThrown" />
-        <item itemvalue="JUnit.LibraryTest.whenBorrowingBook_tests_sqlExceptionIsThrown" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.MainTest.testMain_ViewAvailableBooks_SortedInvalid" />
       </list>
     </recent_temporary>
   </component>

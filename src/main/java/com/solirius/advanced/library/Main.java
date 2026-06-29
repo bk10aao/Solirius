@@ -16,8 +16,8 @@ public final class Main {
      */
     public static final String MENU = "\nMenu:"
         + "\n1. Add a new book"
-        + "\n2. View all books"
-        + "\n3. View available books"
+        + "\n2. View available books"
+        + "\n3. View all books"
         + "\n4. Search for a book"
         + "\n5. Borrow a book"
         + "\n6. Return a book"
@@ -48,14 +48,14 @@ public final class Main {
     public static final int ADD_A_BOOK_OPTION = 1;
 
     /**
-     * Option to list all Books.
-     */
-    public static final int LIST_ALL_BOOKS = 2;
-
-    /**
      * Option to list available Books.
      */
-    public static final int LIST_AVAILABLE_BOOKS = 3;
+    public static final int LIST_AVAILABLE_BOOKS = 2;
+
+    /**
+     * Option to list all Books.
+     */
+    public static final int LIST_ALL_BOOKS = 3;
 
     /**
      * Option to search a Book.
