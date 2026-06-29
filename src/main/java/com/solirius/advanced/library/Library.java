@@ -4,6 +4,7 @@ import com.solirius.advanced.library.exceptions.AlreadyBorrowedException;
 import com.solirius.advanced.library.exceptions.BookNotFoundException;
 import com.solirius.advanced.library.exceptions.NotBorrowedException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,15 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 /**
  * Represents a library that holds a collection of books.
  */
 public class Library {
+
     /**
      * Library Books.
      */
     private final List<Book> books;
+
     /**
      * SqlLite Connection.
      */
@@ -125,6 +127,16 @@ public class Library {
         if (book.isBorrowed()) {
             throw new AlreadyBorrowedException(BOOK_ALREADY_BORROWED);
         }
+        String borrowQuery = "UPDATE books Set isBorrowed = ? WHERE title = ? OR author = ?";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(borrowQuery)) {
+            preparedStatement.setBoolean(1, true);
+            preparedStatement.setString(2, book.getTitle());
+            preparedStatement.setString(3, book.getAuthor());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error borrowing book from library: " + e.getMessage());
+            return false;
+        }
         return book.borrowBook();
     }
 
@@ -138,6 +150,16 @@ public class Library {
         Book book = searchBook(title);
         if (!book.isBorrowed()) {
             throw new NotBorrowedException(BOOK_NOT_BORROWED);
+        }
+        String returnQuery = "UPDATE books Set isBorrowed = ? WHERE title = ? OR author = ?";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(returnQuery)) {
+            preparedStatement.setBoolean(1, false);
+            preparedStatement.setString(2, book.getTitle());
+            preparedStatement.setString(3, book.getAuthor());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error returning book from library: " + e.getMessage());
+            return false;
         }
         return book.returnBook();
     }

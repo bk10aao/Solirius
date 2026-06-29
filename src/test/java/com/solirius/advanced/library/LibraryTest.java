@@ -247,7 +247,6 @@ class LibraryTest {
         library = new Library(mockConnection);
         library.addBook(book);
         Book foundBook = library.searchBook("Jon Skeet");
-
         assertNotNull(foundBook);
         assertEquals("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", foundBook.getTitle());
         assertEquals("Jon Skeet", foundBook.getAuthor());
@@ -255,9 +254,32 @@ class LibraryTest {
 
     @Test
     void testSearchBook_byAuthorName_Not_Present_throwsBookNotFoundException() {
-        Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "NotBresent");
+        Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "Jon Skeet");
         library = new Library(mockConnection);
         library.addBook(book);
         assertThrows(BookNotFoundException.class, () -> library.searchBook("Not_Present"));
+    }
+
+    @Test
+    void whenBorrowingBook_returnsFalse_whenSqlExceptionIsThrown() throws SQLException, AlreadyBorrowedException, BookNotFoundException {
+        Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "Jon Skeet");
+        library = new Library(mockConnection);
+        library.addBook(book);
+        when(mockConnection.prepareStatement(anyString())).thenThrow(new SQLException("Error"));
+        boolean result = library.borrowBook(book.getTitle());
+        assertFalse(result);
+        verify(mockResultSet).close();
+    }
+
+    @Test
+    void whenReturningBook_returnsFalse_whenSqlExceptionIsThrown() throws SQLException, BookNotFoundException, NotBorrowedException, AlreadyBorrowedException {
+        Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "Jon Skeet");
+        library = new Library(mockConnection);
+        library.addBook(book);
+        library.borrowBook("Jon Skeet");
+        when(mockConnection.prepareStatement(anyString())).thenThrow(new SQLException("Error"));
+        boolean result = library.returnBook("Jon Skeet");
+        assertFalse(result);
+        verify(mockResultSet).close();
     }
 }

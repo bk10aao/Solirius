@@ -31,38 +31,47 @@ public final class Main {
         + "\n1. Author"
         + "\n2. Title"
         + "\nEnter your choice: ";
+
     /**
      * Option to sort by author.
      */
     public static final int AUTHOR = 1;
+
     /**
      * Option to sort by title.
      */
     public static final int TITLE = 2;
+
     /**
      * Option to add a Book.
      */
     public static final int ADD_A_BOOK_OPTION = 1;
+
     /**
      * Option to list available Books.
      */
     public static final int LIST_AVAILABLE_BOOKS = 2;
+
     /**
      * Option to list all Books.
      */
     public static final int LIST_ALL_BOOKS = 3;
+
     /**
      * Option to search a Book.
      */
     public static final int SEARCH_BOOK_OPTION = 4;
+
     /**
      * Option to borrow a Book.
      */
     public static final int BORROW_BOOK_OPTION = 5;
+
     /**
      * Option to return a Book.
      */
     public static final int RETURN_BOOK_OPTION = 6;
+
     /**
      * Option to terminate the program.
      */

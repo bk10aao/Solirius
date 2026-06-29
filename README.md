@@ -69,3 +69,12 @@ Include:
  * Handling edge cases and exceptions.
  * Implementation of bonus features (if any).
  * Clarity and thoroughness of the README file.
+
+
+
+
+
+# Notes
+1. Added JaCoCo
+2. Added missing edge case in `LibraryTest` where Library is initialised with 1 book already borrowed.
+3. Added missing edge case in `LibraryTest` where Library is initialised with 1 book, but search for non existent author throws exception.

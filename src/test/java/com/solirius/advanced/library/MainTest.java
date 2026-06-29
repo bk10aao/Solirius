@@ -10,14 +10,14 @@ import com.solirius.advanced.library.exceptions.BookNotFoundException;
 import com.solirius.advanced.library.exceptions.NotBorrowedException;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -27,10 +27,13 @@ class MainTest {
     private Connection mockConnection;
     @Mock
     private Library mockLibrary;
+
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+
     private Book book1;
     private Book book2;
     private Book book3;
+
     @BeforeEach
     void setUp() throws SQLException, BookNotFoundException, AlreadyBorrowedException, NotBorrowedException {
         MockitoAnnotations.openMocks(this);
@@ -42,7 +45,9 @@ class MainTest {
         when(mockLibrary.searchBook(anyString())).thenReturn(book1);
         when(mockLibrary.borrowBook(anyString())).thenReturn(true);
         when(mockLibrary.returnBook(anyString())).thenReturn(true);
+
         Main.setLibrary(mockLibrary);
+
         when(mockLibrary.viewAvailableBooks()).thenReturn(List.of(book1, book3));
         when(mockLibrary.viewAllBooks()).thenReturn(List.of(book1, book2, book3));
         System.setOut(new PrintStream(outputStreamCaptor));
@@ -89,6 +94,7 @@ class MainTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         when(mockLibrary.addBook(any())).thenReturn(false);
+
         Main.main(new String[]{});
 
         verify(mockLibrary).addBook(any(Book.class));
@@ -238,6 +244,7 @@ class MainTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         when(mockLibrary.searchBook(anyString())).thenThrow(new BookNotFoundException(BOOK_NOT_FOUND));
+
         Main.main(new String[]{});
 
         verify(mockLibrary).searchBook("Mock Title");
@@ -274,6 +281,7 @@ class MainTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         when(mockLibrary.borrowBook(anyString())).thenThrow(new AlreadyBorrowedException(BOOK_ALREADY_BORROWED));
+
         Main.main(new String[]{});
 
         verify(mockLibrary).borrowBook("Mock Title");
@@ -310,6 +318,7 @@ class MainTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         when(mockLibrary.returnBook(anyString())).thenThrow(new NotBorrowedException(BOOK_NOT_BORROWED));
+
         Main.main(new String[]{});
 
         verify(mockLibrary).returnBook("Mock Title");
@@ -327,6 +336,7 @@ class MainTest {
         String input = "7\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
+
         Main.main(new String[]{});
 
         String output = outputStreamCaptor.toString().trim();
