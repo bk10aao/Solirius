@@ -76,4 +76,4 @@ Include:
 3. Added missing edge case in `LibraryTest` where Library is initialised with 1 book, but search for non existent author throws exception.
 4. Added borrow book functionality.
 5. Added return book functionality.
-6. fixed menu mismatch causing problems with `View All Books` and `View Available Books`.
+6. Fixed menu mismatch causing problems with `View All Books` and `View Available Books`.
