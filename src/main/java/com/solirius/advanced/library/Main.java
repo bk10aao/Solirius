@@ -48,14 +48,14 @@ public final class Main {
     public static final int ADD_A_BOOK_OPTION = 1;
 
     /**
-     * Option to list available Books.
-     */
-    public static final int LIST_AVAILABLE_BOOKS = 2;
-
-    /**
      * Option to list all Books.
      */
-    public static final int LIST_ALL_BOOKS = 3;
+    public static final int LIST_ALL_BOOKS = 2;
+
+    /**
+     * Option to list available Books.
+     */
+    public static final int LIST_AVAILABLE_BOOKS = 3;
 
     /**
      * Option to search a Book.
@@ -139,7 +139,6 @@ public final class Main {
                     boolean success = library.addBook(new Book(title, author));
                     System.out.println(success ? BOOK_ADDED : BOOK_NOT_ADDED);
                     break;
-
                 case LIST_ALL_BOOKS:
                     System.out.println(SORT_MENU);
                     int sortAllChoice = validateChoices(scanner, 1, 2);
@@ -159,7 +158,6 @@ public final class Main {
                             System.out.println(INVALID);
                     }
                     break;
-
                 case LIST_AVAILABLE_BOOKS:
                     System.out.println(SORT_MENU);
                     int sortAvailableChoice = validateChoices(scanner, 1, 2);
@@ -179,7 +177,6 @@ public final class Main {
                             System.out.println(INVALID);
                     }
                     break;
-
                 case SEARCH_BOOK_OPTION:
                     System.out.print(TITLE_AUTHOR_SEARCH);
                     title = scanner.nextLine();
@@ -190,7 +187,6 @@ public final class Main {
                         System.out.println(bookNotFoundException.getMessage());
                     }
                     break;
-
                 case BORROW_BOOK_OPTION:
                     System.out.print(TITLE_BORROW);
                     title = scanner.nextLine();
@@ -201,7 +197,6 @@ public final class Main {
                         System.out.println(bookNotFoundException.getMessage());
                     }
                     break;
-
                 case RETURN_BOOK_OPTION:
                     System.out.print(TITLE_RETURN);
                     title = scanner.nextLine();
@@ -212,12 +207,10 @@ public final class Main {
                         System.out.println(e.getMessage());
                     }
                     break;
-
                 case EXIT_OPTION:
                     running = false;
                     System.out.println(EXIT);
                     break;
-
                 default:
                     System.out.println(INVALID);
             }
