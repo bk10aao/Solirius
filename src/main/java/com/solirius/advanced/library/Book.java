@@ -60,7 +60,7 @@ public class Book {
     }
 
     /**
-     * Helps printing a book's features.
+     * Helps to print a book's features.
      * @return a string representation of the book.
      */
     @Override
