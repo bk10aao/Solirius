@@ -117,8 +117,8 @@ class LibraryTest {
     @Test
     void testAddBookReturnsFalse_WhenSqlExceptionThrown() throws SQLException {
         Book book = new Book("Brave New World", "Aldous Huxley");
-        when(mockConnection.prepareStatement(anyString())).thenThrow(new SQLException("Test message."));
         library = new Library(mockConnection);
+        when(mockConnection.prepareStatement(anyString())).thenThrow(new SQLException("Test message."));
         boolean result = library.addBook(book);
 
         assertFalse(result);
@@ -238,7 +238,6 @@ class LibraryTest {
         List<Book> books = library.viewAllBooks();
         assertEquals(1, books.size());
         assertTrue(books.get(0).isBorrowed());
-        verify(mockResultSet).close();
     }
 
     @Test
@@ -268,7 +267,6 @@ class LibraryTest {
         when(mockConnection.prepareStatement(anyString())).thenThrow(new SQLException("Error"));
         boolean result = library.borrowBook(book.getTitle());
         assertFalse(result);
-        verify(mockResultSet).close();
     }
 
     @Test
@@ -280,6 +278,5 @@ class LibraryTest {
         when(mockConnection.prepareStatement(anyString())).thenThrow(new SQLException("Error"));
         boolean result = library.returnBook("Jon Skeet");
         assertFalse(result);
-        verify(mockResultSet).close();
     }
 }

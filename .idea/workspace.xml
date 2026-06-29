@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b92a52b1-02b6-4ee4-b3f3-975ab08961fe" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/LibraryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/LibraryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/MainTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Library.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Library.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/solirius/advanced/library/MainTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/solirius/advanced/library/MainTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,34 +19,34 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="3FoJkjRWDSNnefhGIJGfGVQjsRI" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="sortKey" value="BY_TIME_ASCENDING" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Debug",
-    "JUnit.BookTest.executor": "Run",
-    "JUnit.LibraryTest.executor": "Run",
-    "JUnit.LibraryTest.testReturnBook_WhenBookIsNotBorrowed_byAuthor.executor": "Debug",
-    "JUnit.LibraryTest.whenBorrowingBook_returnsFalse_whenSqlExceptionIsThrown.executor": "Run",
-    "JUnit.LibraryTest.whenBorrowingBook_tests_sqlExceptionIsThrown.executor": "Debug",
-    "JUnit.LibraryTest.whenReturningBook_returnsFalse_whenSqlExceptionIsThrown.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/drpsychoben/Desktop/solirius/pom.xml",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.BookTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LibraryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LibraryTest.testReturnBook_WhenBookIsNotBorrowed_byAuthor.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.LibraryTest.whenBorrowingBook_returnsFalse_whenSqlExceptionIsThrown.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LibraryTest.whenBorrowingBook_tests_sqlExceptionIsThrown.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.LibraryTest.whenReturningBook_returnsFalse_whenSqlExceptionIsThrown.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/drpsychoben/Desktop/solirius/pom.xml&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="JUnit.LibraryTest">
     <configuration name="LibraryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-guild-candidate-test" />
@@ -204,12 +200,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/LibraryTest.java</url>
-          <line>267</line>
+          <line>266</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java</url>
-          <line>136</line>
+          <line>137</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
