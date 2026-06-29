@@ -25,13 +25,18 @@ class LibraryTest {
 
     @Mock
     private Connection mockConnection;
+
     @Mock
     private Statement mockStatement;
+
     @Mock
     private ResultSet mockResultSet;
+
     @Mock
     private PreparedStatement mockPreparedStatement;
+
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+
     @BeforeEach
     void setUp() throws SQLException {
         MockitoAnnotations.openMocks(this);
@@ -85,7 +90,6 @@ class LibraryTest {
         RuntimeException exception = assertThrows(RuntimeException.class, () -> new Library(mockConnection));
         assertEquals("java.sql.SQLException: Test message.", exception.getMessage());
         assertEquals("Error in connecting to the library database: Test message.", outputStreamCaptor.toString().trim());
-
     }
 
     @Test

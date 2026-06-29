@@ -4,14 +4,17 @@ package com.solirius.advanced.library;
  * Represents a book in the library.
  */
 public class Book {
+
     /**
      * The book's title.
      */
     private final String title;
+
     /**
      * The book's author.
      */
     private final String author;
+
     /**
      * Defines whether the book has been borrowed.
      */
