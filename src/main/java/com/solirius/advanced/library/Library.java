@@ -33,7 +33,7 @@ public class Library {
     /**
      * Creates a library from SqlLite if not existing else updates book list with entries.
      */
-    public Library(Connection connection) {
+    public Library(final Connection connection) {
         this.books = new ArrayList<>();
         this.connection = connection;
         try {
