@@ -1,7 +1,15 @@
 package com.solirius.advanced.library;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import com.solirius.advanced.library.exceptions.AlreadyBorrowedException;
 import com.solirius.advanced.library.exceptions.BookNotFoundException;
@@ -218,5 +226,18 @@ class LibraryTest {
     void testReturnBook_WhenBookDoesNotExist() {
         library = new Library(mockConnection);
         assertThrows(BookNotFoundException.class, () -> library.returnBook("Nonexistent Book"));
+    }
+
+    @Test
+    void givenLibraryInitialisedWithOneBookBorrowed_loadsBookAsBorrowed() throws SQLException {
+        when(mockResultSet.next()).thenReturn(true, false);
+        when(mockResultSet.getString("title")).thenReturn("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions");
+        when(mockResultSet.getString("author")).thenReturn("Jon Skeet");
+        when(mockResultSet.getBoolean("isBorrowed")).thenReturn(true);
+        library = new Library(mockConnection);
+        List<Book> books = library.viewAllBooks();
+        assertEquals(1, books.size());
+        assertTrue(books.get(0).isBorrowed());
+        verify(mockResultSet).close();
     }
 }
