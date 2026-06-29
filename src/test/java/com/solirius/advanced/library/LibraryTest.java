@@ -240,4 +240,24 @@ class LibraryTest {
         assertTrue(books.get(0).isBorrowed());
         verify(mockResultSet).close();
     }
+
+    @Test
+    void testSearchBook_byAuthorName_Jon_Skeet_returnsCorrectBookTitle() throws BookNotFoundException {
+        Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "Jon Skeet");
+        library = new Library(mockConnection);
+        library.addBook(book);
+        Book foundBook = library.searchBook("Jon Skeet");
+
+        assertNotNull(foundBook);
+        assertEquals("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", foundBook.getTitle());
+        assertEquals("Jon Skeet", foundBook.getAuthor());
+    }
+
+    @Test
+    void testSearchBook_byAuthorName_Not_Present_throwsBookNotFoundException() {
+        Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "NotBresent");
+        library = new Library(mockConnection);
+        library.addBook(book);
+        assertThrows(BookNotFoundException.class, () -> library.searchBook("Not_Present"));
+    }
 }
