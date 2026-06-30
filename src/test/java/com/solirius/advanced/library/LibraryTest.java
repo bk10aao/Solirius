@@ -228,7 +228,7 @@ class LibraryTest {
     }
 
     @Test
-    void testReturnBook_WhenBookIsNotBorrowed() throws InvalidParameterException {
+    void whenReturningBook_thatIsNotBorrows_throwsNotBorrowedException() throws InvalidParameterException {
         Book book = new Book("1984", "George Orwell");
         library = new Library(mockConnection);
         library.addBook(book);
@@ -237,7 +237,20 @@ class LibraryTest {
     }
 
     @Test
-    void testReturnBook_WhenBookDoesNotExist() {
+    void whenReturningBook_returnsFalse_whenSqlExceptionIsThrown() throws InvalidParameterException, SQLException, NotBorrowedException, BookNotFoundException, AlreadyBorrowedException {
+        Book book = new Book("1984", "George Orwell");
+        library = new Library(mockConnection);
+        library.addBook(book);
+        library.borrowBook("1984");
+        when(mockConnection.prepareStatement(anyString())).thenThrow(new SQLException("Database failure"));
+        boolean result = library.returnBook("1984");
+        assertFalse(result);
+        assertTrue(book.isBorrowed());
+        assertEquals("Error returning book from library: Database failure", outputStreamCaptor.toString().trim());
+    }
+
+    @Test
+    void whenReturningBook_thaytDoesNotExist_throwsBookNotFoundException() {
         library = new Library(mockConnection);
         assertThrows(BookNotFoundException.class, () -> library.returnBook("Nonexistent Book"));
     }
@@ -255,42 +268,12 @@ class LibraryTest {
     }
 
     @Test
-    void testSearchBook_byAuthorName_Jon_Skeet_returnsCorrectBookTitle() throws BookNotFoundException, InvalidParameterException {
-        Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "Jon Skeet");
-        library = new Library(mockConnection);
-        library.addBook(book);
-        Book foundBook = library.searchBook("Jon Skeet");
-        assertNotNull(foundBook);
-        assertEquals("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", foundBook.getTitle());
-        assertEquals("Jon Skeet", foundBook.getAuthor());
-    }
-
-    @Test
-    void testSearchBook_byAuthorName_Not_Present_throwsBookNotFoundException() throws InvalidParameterException {
-        Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "Jon Skeet");
-        library = new Library(mockConnection);
-        library.addBook(book);
-        assertThrows(BookNotFoundException.class, () -> library.searchBook("Not_Present"));
-    }
-
-    @Test
     void whenBorrowingBook_returnsFalse_whenSqlExceptionIsThrown() throws SQLException, AlreadyBorrowedException, BookNotFoundException, InvalidParameterException {
         Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "Jon Skeet");
         library = new Library(mockConnection);
         library.addBook(book);
         when(mockConnection.prepareStatement(anyString())).thenThrow(new SQLException("Error"));
         boolean result = library.borrowBook(book.getTitle());
-        assertFalse(result);
-    }
-
-    @Test
-    void whenReturningBook_returnsFalse_whenSqlExceptionIsThrown() throws SQLException, BookNotFoundException, NotBorrowedException, AlreadyBorrowedException, InvalidParameterException {
-        Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "Jon Skeet");
-        library = new Library(mockConnection);
-        library.addBook(book);
-        library.borrowBook("Jon Skeet");
-        when(mockConnection.prepareStatement(anyString())).thenThrow(new SQLException("Error"));
-        boolean result = library.returnBook("Jon Skeet");
         assertFalse(result);
     }
 

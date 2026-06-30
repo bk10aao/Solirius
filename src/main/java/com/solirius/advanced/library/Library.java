@@ -117,19 +117,19 @@ public class Library {
      * @return a list of all books in library, borrowed or not.
      */
     public List<Book> viewAllBooks() {
-        return books;
+        return new ArrayList<>(books);
     }
 
     /**
      * Searches for a book by its title.
      *
-     * @param titleAuthor the title or author of the book to search
+     * @param title the title of the book to search
      * @return the book if found, otherwise throws BookNotFoundException
      */
-    public Book searchBook(final String titleAuthor) throws BookNotFoundException, InvalidParameterException {
-        validateTitle(titleAuthor);
+    public Book searchBook(final String title) throws BookNotFoundException, InvalidParameterException {
+        validateTitle(title);
         return books.stream()
-            .filter(book -> book.getTitle().equalsIgnoreCase(titleAuthor) || book.getAuthor().equalsIgnoreCase(titleAuthor))
+            .filter(book -> book.getTitle().equalsIgnoreCase(title) || book.getAuthor().equalsIgnoreCase(title))
             .findFirst()
             .orElseThrow(() -> new BookNotFoundException(BOOK_NOT_FOUND));
     }

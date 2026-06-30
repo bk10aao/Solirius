@@ -7,7 +7,8 @@
 6. Fixed menu mismatch causing problems with `View All Books` and `View Available Books`.
 7. Added null checks for search, borrow and return book.
 8. Added InvalidParameterException.
-9. Added method `getBooksByAuthor(final String author)` to get all books by author.
+9. Added method `getBooksByAuthor(final String author)` to get all books by author as `searchBook(final String titleAuthor)` returns just one if author has more than one book.
+10. Made 
 
 This repository contains a Java challenge designed to assess the skills of a Java Guild candidate. The challenge includes problem-solving, coding, and demonstrating knowledge of Java fundamentals and best practices.
 
