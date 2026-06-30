@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b92a52b1-02b6-4ee4-b3f3-975ab08961fe" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/LibraryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/LibraryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Library.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Library.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,12 +236,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java</url>
-          <line>116</line>
+          <line>117</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java</url>
-          <line>147</line>
+          <line>149</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

@@ -81,6 +81,7 @@ public class Library {
      *
      * @param book the book to add
      * @return true if successful, otherwise false
+     * @throws InvalidParameterException if the book is null
      */
     public boolean addBook(final Book book) throws InvalidParameterException {
         if(book == null) {
@@ -123,6 +124,7 @@ public class Library {
      *
      * @param title the title of the book to search
      * @return the book if found, otherwise throws BookNotFoundException
+     * @throws InvalidParameterException if title is null, empty or blank
      */
     public Book searchBook(final String title) throws BookNotFoundException, InvalidParameterException {
         validateTitle(title);
@@ -136,9 +138,9 @@ public class Library {
      * Gets all books by author.
      *
      * @param author the author of the books to get from library
-     * @return the book if found,
-     * @throws InvalidParameterException if author is null, empty or blank
-     * @throws AuthorNotFoundException if author not found
+     * @return a list of books by the author
+     * @throws InvalidParameterException if author is null, empty ot blank
+     * @throws AuthorNotFoundException if author is not found
      */
     public List<Book> getBooksByAuthor(final String author) throws InvalidParameterException, AuthorNotFoundException {
         validateAuthor(author);
@@ -154,6 +156,9 @@ public class Library {
      *
      * @param title the title of the book to borrow
      * @return true if the book is successfully borrowed
+     * @throws AlreadyBorrowedException if book is already borrowed
+     * @throws InvalidParameterException if title is null or is blank
+     * @throws BookNotFoundException if book is not found
      */
     public boolean borrowBook(final String title) throws BookNotFoundException, AlreadyBorrowedException, InvalidParameterException {
         validateTitle(title);
@@ -178,6 +183,9 @@ public class Library {
      *
      * @param title the title of the book to return
      * @return true if the book is successfully returned, otherwise false
+     * @throws InvalidParameterException if title is null or is blank
+     * @throws BookNotFoundException if no book exists with title
+     * @throws NotBorrowedException if the book is no borrowed
      */
     public boolean returnBook(final String title) throws BookNotFoundException, NotBorrowedException, InvalidParameterException {
         Book book = searchBook(title);
