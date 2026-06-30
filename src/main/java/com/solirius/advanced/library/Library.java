@@ -68,6 +68,9 @@ public class Library {
      * @return true if successful, otherwise false
      */
     public boolean addBook(final Book book) {
+        if(book == null) {
+            throw new IllegalArgumentException();
+        }
         try {
             String query = "INSERT INTO books (title, author, isBorrowed) VALUES (?, ?, ?)";
             var preparedStatement = connection.prepareStatement(query);
@@ -109,6 +112,10 @@ public class Library {
      * @return the book if found, otherwise throws BookNotFoundException
      */
     public Book searchBook(final String titleAuthor) throws BookNotFoundException {
+        if(titleAuthor == null)
+            throw new IllegalArgumentException("Title or Author cannot be null.");
+        if(titleAuthor.isBlank())
+            throw new IllegalArgumentException("Title or Author cannot be blank.");
         return books.stream()
             .filter(book -> book.getTitle().equalsIgnoreCase(titleAuthor) || book.getAuthor().equalsIgnoreCase(titleAuthor))
             .findFirst()
@@ -122,12 +129,7 @@ public class Library {
      * @return true if the book is successfully borrowed
      */
     public boolean borrowBook(final String title) throws BookNotFoundException, AlreadyBorrowedException {
-        if(title == null) {
-            throw new IllegalArgumentException("Title must not be null");
-        }
-        if(title.isBlank()) {
-            throw new IllegalArgumentException("Title must not be blank");
-        }
+        validateTitle(title);
         Book book = searchBook(title);
         if (book.isBorrowed()) {
             throw new AlreadyBorrowedException(BOOK_ALREADY_BORROWED);
@@ -153,12 +155,7 @@ public class Library {
      * @return true if the book is successfully returned, otherwise false
      */
     public boolean returnBook(final String title) throws BookNotFoundException, NotBorrowedException {
-        if(title == null) {
-            throw new IllegalArgumentException("Title must not be null");
-        }
-        if(title.isBlank()) {
-            throw new IllegalArgumentException("Title must not be blank");
-        }
+        validateTitle(title);
         Book book = searchBook(title);
         if (!book.isBorrowed()) {
             throw new NotBorrowedException(BOOK_NOT_BORROWED);
@@ -175,5 +172,14 @@ public class Library {
             return false;
         }
         return book.returnBook();
+    }
+
+    private static void validateTitle(String title) {
+        if(title == null) {
+            throw new IllegalArgumentException("Title must not be null.");
+        }
+        if(title.isBlank()) {
+            throw new IllegalArgumentException("Title must not be blank.");
+        }
     }
 }

@@ -77,3 +77,4 @@ Include:
 4. Added borrow book functionality.
 5. Added return book functionality.
 6. Fixed menu mismatch causing problems with `View All Books` and `View Available Books`.
+7. Added null checks for search, borrow and return book.

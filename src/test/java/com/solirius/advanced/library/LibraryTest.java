@@ -294,7 +294,7 @@ class LibraryTest {
     }
 
     @Test
-    void whenBorrowingBook_withEmptyString_throwsIllegalArgumentException() {
+    void whenBorrowingBook_withBlankString_throwsIllegalArgumentException() {
         library = new Library(mockConnection);
         assertThrows(IllegalArgumentException.class, () -> library.borrowBook("    "));
     }
@@ -312,8 +312,38 @@ class LibraryTest {
     }
 
     @Test
-    void whenReturningBook_withEmptyString_throwsIllegalArgumentException() {
+    void whenReturningBook_withBlankString_throwsIllegalArgumentException() {
         library = new Library(mockConnection);
         assertThrows(IllegalArgumentException.class, () -> library.returnBook("    "));
+    }
+
+    @Test
+    void whenSearchingForBook_withNullValue_throwsIllegalArgumentException() {
+        library = new Library(mockConnection);
+        assertThrows(IllegalArgumentException.class, () -> library.searchBook(null));
+    }
+
+    @Test
+    void whenSearchingForBook_withEmptyString_throwsIllegalArgumentException() {
+        library = new Library(mockConnection);
+        assertThrows(IllegalArgumentException.class, () -> library.searchBook(""));
+    }
+
+    @Test
+    void whenSearchingForBook_withBlankString_throwsIllegalArgumentException() {
+        library = new Library(mockConnection);
+        assertThrows(IllegalArgumentException.class, () -> library.searchBook("    "));
+    }
+
+    @Test
+    void whenAdding_nullBook_throwsIllegalArgumentException() {
+        library = new Library(mockConnection);
+        assertThrows(IllegalArgumentException.class, () -> library.addBook(null));
+    }
+
+    @Test
+    void whenAddingBook_withNullValue_throwsIllegalArgument() {
+        library = new Library(mockConnection);
+        assertThrows(IllegalArgumentException.class, () -> library.addBook(null));
     }
 }
