@@ -144,7 +144,7 @@ public class Library {
         if(authorBooks.isEmpty()) {
             throw new AuthorNotFoundException("No books found for author: " + author);
         }
-        return authorBooks;
+        return new ArrayList<>(authorBooks);
     }
 
     /**
