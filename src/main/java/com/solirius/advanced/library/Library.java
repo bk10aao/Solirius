@@ -86,20 +86,18 @@ public class Library {
         if(book == null) {
             throw new InvalidParameterException("Book must not be null.");
         }
-        try {
-            String query = "INSERT INTO books (title, author, isBorrowed) VALUES (?, ?, ?)";
-            var preparedStatement = connection.prepareStatement(query);
+        String query = "INSERT INTO books (title, author, isBorrowed) VALUES (?, ?, ?)";
+        try(var preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, book.getTitle());
             preparedStatement.setString(2, book.getAuthor());
             preparedStatement.setBoolean(3, book.isBorrowed());
             preparedStatement.executeUpdate();
-            preparedStatement.close();
             books.add(book);
+            return true;
         } catch (SQLException e) {
             System.out.println("Error adding book to the library: " + e.getMessage());
             return false;
         }
-        return true;
     }
 
     /**
@@ -161,13 +159,11 @@ public class Library {
         if (book.isBorrowed()) {
             throw new AlreadyBorrowedException(BOOK_ALREADY_BORROWED);
         }
-        try {
-            String borrowQuery = "UPDATE books SET isBorrowed = ? WHERE title = ?";
-            var preparedStatement = connection.prepareStatement(borrowQuery);
+        String borrowQuery = "UPDATE books SET isBorrowed = ? WHERE title = ?";
+        try(var preparedStatement = connection.prepareStatement(borrowQuery)) {
             preparedStatement.setBoolean(1, true);
             preparedStatement.setString(2, book.getTitle());
             preparedStatement.executeUpdate();
-            preparedStatement.close();
         } catch (SQLException e) {
             System.out.println("Error borrowing book from library: " + e.getMessage());
             return false;
@@ -186,13 +182,11 @@ public class Library {
         if (!book.isBorrowed()) {
             throw new NotBorrowedException(BOOK_NOT_BORROWED);
         }
-        try {
-            String returnQuery = "UPDATE books SET isBorrowed = ? WHERE title = ?";
-            var preparedStatement = connection.prepareStatement(returnQuery);
+        String returnQuery = "UPDATE books SET isBorrowed = ? WHERE title = ?";
+        try(var preparedStatement = connection.prepareStatement(returnQuery)) {
             preparedStatement.setBoolean(1, false);
             preparedStatement.setString(2, book.getTitle());
             preparedStatement.executeUpdate();
-            preparedStatement.close();
         } catch (SQLException e) {
             System.out.println("Error returning book from library: " + e.getMessage());
             return false;
