@@ -8,7 +8,7 @@
 7. Added null checks for search, borrow and return book.
 8. Added InvalidParameterException.
 9. Added method `getBooksByAuthor(final String author)` to get all books by author as `searchBook(final String titleAuthor)` returns just one if author has more than one book.
-10. Made 
+10. Made `searchBook(final String authTitle)` into `searchBook(final String title)` and to return book if exists.
 
 This repository contains a Java challenge designed to assess the skills of a Java Guild candidate. The challenge includes problem-solving, coding, and demonstrating knowledge of Java fundamentals and best practices.
 
