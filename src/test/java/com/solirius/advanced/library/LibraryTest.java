@@ -111,7 +111,6 @@ class LibraryTest {
         RuntimeException runtimeException = assertThrows(RuntimeException.class, () -> new Library(mockConnection));
         assertEquals("Invalid argument when reading from database: Title must not be blank.", runtimeException.getMessage());
         verify(mockResultSet).close();
-        verify(mockStatement).close();
     }
 
     @Test

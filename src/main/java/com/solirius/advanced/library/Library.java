@@ -127,7 +127,7 @@ public class Library {
     public Book searchBook(final String title) throws BookNotFoundException, InvalidParameterException {
         validateTitle(title);
         return books.stream()
-            .filter(book -> book.getTitle().equalsIgnoreCase(title) || book.getAuthor().equalsIgnoreCase(title))
+            .filter(book -> book.getTitle().equalsIgnoreCase(title))
             .findFirst()
             .orElseThrow(() -> new BookNotFoundException(BOOK_NOT_FOUND));
     }
@@ -136,7 +136,9 @@ public class Library {
      * Gets all books by author.
      *
      * @param author the author of the books to get from library
-     * @return the book if found, otherwise throws BookNotFoundException
+     * @return the book if found,
+     * @throws InvalidParameterException if author is null, empty or blank
+     * @throws AuthorNotFoundException if author not found
      */
     public List<Book> getBooksByAuthor(final String author) throws InvalidParameterException, AuthorNotFoundException {
         validateAuthor(author);
