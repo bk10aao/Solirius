@@ -5,22 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b92a52b1-02b6-4ee4-b3f3-975ab08961fe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/exceptions/InvalidParameterException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library.db" beforeDir="false" afterPath="$PROJECT_DIR$/library.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/BookTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/BookTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/LibraryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/LibraryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/MainTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Book.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library.db" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Library.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Library.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/solirius/advanced/library/BookTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/solirius/advanced/library/BookTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/solirius/advanced/library/MainTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/solirius/advanced/library/MainTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +75,20 @@
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.LibraryTest">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.solirius.advanced.library.Main" />
+      <module name="java-guild-candidate-test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.solirius.advanced.library.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BookTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-guild-candidate-test" />
       <extension name="coverage">
@@ -150,20 +151,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LibraryTest,whenAddingBook_withNullAuthorAndNullTitle_throwInvalidParameterException and 4 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="java-guild-candidate-test" />
-      <option name="TEST_OBJECT" value="pattern" />
-      <patterns>
-        <pattern testClass="com.solirius.advanced.library.LibraryTest,whenAddingBook_withNullAuthorAndNullTitle_throwInvalidParameterException" />
-        <pattern testClass="com.solirius.advanced.library.LibraryTest,whenAdding_nullBook_throwsInvalidParameterException" />
-        <pattern testClass="com.solirius.advanced.library.LibraryTest,whenAddingBook_withNullTitle_throwsInvalidParameterException" />
-        <pattern testClass="com.solirius.advanced.library.LibraryTest,whenAddingBook_withNullAuthor_throwsInvalidParameterException" />
-        <pattern testClass="com.solirius.advanced.library.LibraryTest,whenAddingBook_withEmptyTitle_throwsInvalidParameterException" />
-      </patterns>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="solirius" />
       <method v="2">
@@ -213,11 +200,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.LibraryTest" />
         <item itemvalue="JUnit.LibraryTest.testLibraryThrowsInvalidParameterException_whenReadingInvalidBookDataFromDatabase_onConstructor" />
         <item itemvalue="JUnit.BookTest" />
         <item itemvalue="JUnit.BookTest.whenConstructingBook_withNullAuthorAndNullTitle_throwInvalidParameterException" />
-        <item itemvalue="JUnit.LibraryTest,whenAddingBook_withNullAuthorAndNullTitle_throwInvalidParameterException and 4 more" />
       </list>
     </recent_temporary>
   </component>
