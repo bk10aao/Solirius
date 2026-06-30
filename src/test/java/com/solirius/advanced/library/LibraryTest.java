@@ -13,6 +13,7 @@ import static org.mockito.Mockito.when;
 
 import com.solirius.advanced.library.exceptions.AlreadyBorrowedException;
 import com.solirius.advanced.library.exceptions.BookNotFoundException;
+import com.solirius.advanced.library.exceptions.InvalidParameterException;
 import com.solirius.advanced.library.exceptions.NotBorrowedException;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -21,7 +22,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.internal.matchers.Null;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -102,7 +102,19 @@ class LibraryTest {
     }
 
     @Test
-    void testAddBook() throws SQLException {
+    void testLibraryThrowsInvalidParameterException_whenReadingInvalidBookDataFromDatabase_onConstructor() throws SQLException {
+        when(mockResultSet.next()).thenReturn(true, false);
+        when(mockResultSet.getString("title")).thenReturn("");
+        when(mockResultSet.getString("author")).thenReturn("Jon Skeet");
+        when(mockResultSet.getBoolean("isBorrowed")).thenReturn(false);
+        RuntimeException runtimeException = assertThrows(RuntimeException.class, () -> new Library(mockConnection));
+        assertEquals("Invalid argument when reading from database: Title must not be blank.", runtimeException.getMessage());
+        verify(mockResultSet).close();
+        verify(mockStatement).close();
+    }
+
+    @Test
+    void testAddBook() throws SQLException, InvalidParameterException {
         Book book = new Book("Brave New World", "Aldous Huxley");
         when(mockPreparedStatement.executeUpdate()).thenReturn(1);
         library = new Library(mockConnection);
@@ -116,7 +128,7 @@ class LibraryTest {
     }
 
     @Test
-    void testAddBookReturnsFalse_WhenSqlExceptionThrown() throws SQLException {
+    void testAddBookReturnsFalse_WhenSqlExceptionThrown() throws SQLException, InvalidParameterException {
         Book book = new Book("Brave New World", "Aldous Huxley");
         library = new Library(mockConnection);
         when(mockConnection.prepareStatement(anyString())).thenThrow(new SQLException("Test message."));
@@ -131,7 +143,7 @@ class LibraryTest {
     }
 
     @Test
-    void testViewAvailableBooks() {
+    void testViewAvailableBooks() throws InvalidParameterException {
         Book book1 = new Book("1984", "George Orwell");
         Book book2 = new Book("The Catcher in the Rye", "J.D. Salinger");
         library = new Library(mockConnection);
@@ -143,7 +155,7 @@ class LibraryTest {
     }
 
     @Test
-    void testViewAllBooks() throws AlreadyBorrowedException, BookNotFoundException {
+    void testViewAllBooks() throws AlreadyBorrowedException, BookNotFoundException, InvalidParameterException {
         Book book1 = new Book("1984", "George Orwell");
         Book book2 = new Book("The Catcher in the Rye", "J.D. Salinger");
         library = new Library(mockConnection);
@@ -158,7 +170,7 @@ class LibraryTest {
     }
 
     @Test
-    void testSearchBook_WhenBookExists() throws BookNotFoundException {
+    void testSearchBook_WhenBookExists() throws BookNotFoundException, InvalidParameterException {
         Book book = new Book("1984", "George Orwell");
         library = new Library(mockConnection);
         library.addBook(book);
@@ -175,7 +187,7 @@ class LibraryTest {
     }
 
     @Test
-    void testBorrowBook_WhenBookIsAvailable() throws AlreadyBorrowedException, BookNotFoundException {
+    void testBorrowBook_WhenBookIsAvailable() throws AlreadyBorrowedException, BookNotFoundException, InvalidParameterException {
         Book book = new Book("1984", "George Orwell");
         library = new Library(mockConnection);
         library.addBook(book);
@@ -186,7 +198,7 @@ class LibraryTest {
     }
 
     @Test
-    void testBorrowBook_WhenBookIsNotAvailable() {
+    void testBorrowBook_WhenBookIsNotAvailable() throws InvalidParameterException {
         Book book = new Book("1984", "George Orwell");
         book.borrowBook();
         library = new Library(mockConnection);
@@ -202,7 +214,7 @@ class LibraryTest {
     }
 
     @Test
-    void testReturnBook_WhenBookIsBorrowed() throws AlreadyBorrowedException, BookNotFoundException, NotBorrowedException {
+    void testReturnBook_WhenBookIsBorrowed() throws AlreadyBorrowedException, BookNotFoundException, NotBorrowedException, InvalidParameterException {
         Book book = new Book("1984", "George Orwell");
         library = new Library(mockConnection);
         library.addBook(book);
@@ -215,7 +227,7 @@ class LibraryTest {
     }
 
     @Test
-    void testReturnBook_WhenBookIsNotBorrowed() {
+    void testReturnBook_WhenBookIsNotBorrowed() throws InvalidParameterException {
         Book book = new Book("1984", "George Orwell");
         library = new Library(mockConnection);
         library.addBook(book);
@@ -242,7 +254,7 @@ class LibraryTest {
     }
 
     @Test
-    void testSearchBook_byAuthorName_Jon_Skeet_returnsCorrectBookTitle() throws BookNotFoundException {
+    void testSearchBook_byAuthorName_Jon_Skeet_returnsCorrectBookTitle() throws BookNotFoundException, InvalidParameterException {
         Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "Jon Skeet");
         library = new Library(mockConnection);
         library.addBook(book);
@@ -253,7 +265,7 @@ class LibraryTest {
     }
 
     @Test
-    void testSearchBook_byAuthorName_Not_Present_throwsBookNotFoundException() {
+    void testSearchBook_byAuthorName_Not_Present_throwsBookNotFoundException() throws InvalidParameterException {
         Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "Jon Skeet");
         library = new Library(mockConnection);
         library.addBook(book);
@@ -261,7 +273,7 @@ class LibraryTest {
     }
 
     @Test
-    void whenBorrowingBook_returnsFalse_whenSqlExceptionIsThrown() throws SQLException, AlreadyBorrowedException, BookNotFoundException {
+    void whenBorrowingBook_returnsFalse_whenSqlExceptionIsThrown() throws SQLException, AlreadyBorrowedException, BookNotFoundException, InvalidParameterException {
         Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "Jon Skeet");
         library = new Library(mockConnection);
         library.addBook(book);
@@ -271,7 +283,7 @@ class LibraryTest {
     }
 
     @Test
-    void whenReturningBook_returnsFalse_whenSqlExceptionIsThrown() throws SQLException, BookNotFoundException, NotBorrowedException, AlreadyBorrowedException {
+    void whenReturningBook_returnsFalse_whenSqlExceptionIsThrown() throws SQLException, BookNotFoundException, NotBorrowedException, AlreadyBorrowedException, InvalidParameterException {
         Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "Jon Skeet");
         library = new Library(mockConnection);
         library.addBook(book);
@@ -282,68 +294,62 @@ class LibraryTest {
     }
 
     @Test
-    void whenBorrowingBook_withNullValue_throwsIllegalArgumentException() {
+    void whenBorrowingBook_withNullValue_throwsInvalidParameterException() {
         library = new Library(mockConnection);
-        assertThrows(IllegalArgumentException.class, () -> library.borrowBook(null));
+        assertThrows(InvalidParameterException.class, () -> library.borrowBook(null));
     }
 
     @Test
-    void whenBorrowingBook_withEmptyTitle_throwsIllegalArgumentException() {
+    void whenBorrowingBook_withEmptyTitle_throwsInvalidParameterException() {
         library = new Library(mockConnection);
-        assertThrows(IllegalArgumentException.class, () -> library.borrowBook(""));
+        assertThrows(InvalidParameterException.class, () -> library.borrowBook(""));
     }
 
     @Test
-    void whenBorrowingBook_withBlankString_throwsIllegalArgumentException() {
+    void whenBorrowingBook_withBlankString_throwsInvalidParameterException() {
         library = new Library(mockConnection);
-        assertThrows(IllegalArgumentException.class, () -> library.borrowBook("    "));
+        assertThrows(InvalidParameterException.class, () -> library.borrowBook("    "));
     }
 
     @Test
-    void whenReturningBook_withNullValue_throwsIllegalArgumentException() {
+    void whenReturningBook_withNullValue_throwsInvalidParameterException() {
         library = new Library(mockConnection);
-        assertThrows(IllegalArgumentException.class, () -> library.returnBook(null));
+        assertThrows(InvalidParameterException.class, () -> library.returnBook(null));
     }
 
     @Test
-    void whenReturningBook_withEmptyTitle_throwsIllegalArgumentException() {
+    void whenReturningBook_withEmptyTitle_throwsInvalidParameterException() {
         library = new Library(mockConnection);
-        assertThrows(IllegalArgumentException.class, () -> library.returnBook(""));
+        assertThrows(InvalidParameterException.class, () -> library.returnBook(""));
     }
 
     @Test
-    void whenReturningBook_withBlankString_throwsIllegalArgumentException() {
+    void whenReturningBook_withBlankString_throwsInvalidParameterException() {
         library = new Library(mockConnection);
-        assertThrows(IllegalArgumentException.class, () -> library.returnBook("    "));
+        assertThrows(InvalidParameterException.class, () -> library.returnBook("    "));
     }
 
     @Test
-    void whenSearchingForBook_withNullValue_throwsIllegalArgumentException() {
+    void whenSearchingForBook_withNullValue_throwsInvalidParameterException() {
         library = new Library(mockConnection);
-        assertThrows(IllegalArgumentException.class, () -> library.searchBook(null));
+        assertThrows(InvalidParameterException.class, () -> library.searchBook(null));
     }
 
     @Test
-    void whenSearchingForBook_withEmptyString_throwsIllegalArgumentException() {
+    void whenSearchingForBook_withEmptyString_throwsInvalidParameterException() {
         library = new Library(mockConnection);
-        assertThrows(IllegalArgumentException.class, () -> library.searchBook(""));
+        assertThrows(InvalidParameterException.class, () -> library.searchBook(""));
     }
 
     @Test
-    void whenSearchingForBook_withBlankString_throwsIllegalArgumentException() {
+    void whenSearchingForBook_withBlankString_throwsInvalidParameterException() {
         library = new Library(mockConnection);
-        assertThrows(IllegalArgumentException.class, () -> library.searchBook("    "));
+        assertThrows(InvalidParameterException.class, () -> library.searchBook("    "));
     }
 
     @Test
-    void whenAdding_nullBook_throwsIllegalArgumentException() {
+    void whenAdding_nullBook_throwsInvalidParameterException() {
         library = new Library(mockConnection);
-        assertThrows(IllegalArgumentException.class, () -> library.addBook(null));
-    }
-
-    @Test
-    void whenAddingBook_withNullValue_throwsIllegalArgument() {
-        library = new Library(mockConnection);
-        assertThrows(IllegalArgumentException.class, () -> library.addBook(null));
+        assertThrows(InvalidParameterException.class, () -> library.addBook(null));
     }
 }

@@ -7,6 +7,7 @@ import static org.mockito.Mockito.*;
 
 import com.solirius.advanced.library.exceptions.AlreadyBorrowedException;
 import com.solirius.advanced.library.exceptions.BookNotFoundException;
+import com.solirius.advanced.library.exceptions.InvalidParameterException;
 import com.solirius.advanced.library.exceptions.NotBorrowedException;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -35,7 +36,7 @@ class MainTest {
     private Book book3;
 
     @BeforeEach
-    void setUp() throws SQLException, BookNotFoundException, AlreadyBorrowedException, NotBorrowedException {
+    void setUp() throws SQLException, BookNotFoundException, AlreadyBorrowedException, NotBorrowedException, InvalidParameterException {
         MockitoAnnotations.openMocks(this);
         book1 = new Book("Mock Title 1", "Mock Author 2");
         book2 = new Book("Mock Title 2", "Mock Author 3");
@@ -70,7 +71,7 @@ class MainTest {
     }
 
     @Test
-    void testMain_AddBook() {
+    void testMain_AddBook() throws InvalidParameterException {
         String input = "1\nMock Title\nMock Author\n7\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
@@ -89,7 +90,7 @@ class MainTest {
     }
 
     @Test
-    void testMain_AddBookFail() {
+    void testMain_AddBookFail() throws InvalidParameterException {
         String input = "1\nMock Title 1\nMock Author 2\n7\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
@@ -221,7 +222,7 @@ class MainTest {
     }
 
     @Test
-    void testMain_SearchBook() throws BookNotFoundException {
+    void testMain_SearchBook() throws BookNotFoundException, InvalidParameterException {
         String input = "4\nMock Title 1\n7\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
@@ -239,7 +240,7 @@ class MainTest {
     }
 
     @Test
-    void testMain_SearchBookFailed() throws BookNotFoundException {
+    void testMain_SearchBookFailed() throws BookNotFoundException, InvalidParameterException {
         String input = "4\nMock Title\n7\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
@@ -258,7 +259,7 @@ class MainTest {
     }
 
     @Test
-    void testMain_BorrowBook() throws BookNotFoundException, AlreadyBorrowedException {
+    void testMain_BorrowBook() throws BookNotFoundException, AlreadyBorrowedException, InvalidParameterException  {
         String input = "5\nMock Title\n7\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
@@ -276,7 +277,7 @@ class MainTest {
     }
 
     @Test
-    void testMain_BorrowBookFailed() throws BookNotFoundException, AlreadyBorrowedException {
+    void testMain_BorrowBookFailed() throws BookNotFoundException, AlreadyBorrowedException, InvalidParameterException  {
         String input = "5\nMock Title\n7\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
@@ -295,7 +296,7 @@ class MainTest {
     }
 
     @Test
-    void testMain_ReturnBook() throws BookNotFoundException, NotBorrowedException {
+    void testMain_ReturnBook() throws BookNotFoundException, NotBorrowedException, InvalidParameterException  {
         String input = "6\nMock Title\n7\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
@@ -313,7 +314,7 @@ class MainTest {
     }
 
     @Test
-    void testMain_ReturnBookFailed() throws BookNotFoundException, NotBorrowedException {
+    void testMain_ReturnBookFailed() throws BookNotFoundException, NotBorrowedException, InvalidParameterException  {
         String input = "6\nMock Title\n7\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);

@@ -2,6 +2,7 @@ package com.solirius.advanced.library;
 
 import com.solirius.advanced.library.exceptions.AlreadyBorrowedException;
 import com.solirius.advanced.library.exceptions.BookNotFoundException;
+import com.solirius.advanced.library.exceptions.InvalidParameterException;
 import com.solirius.advanced.library.exceptions.NotBorrowedException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -36,12 +37,14 @@ public class Library {
     public Library(final Connection connection) {
         this.books = new ArrayList<>();
         this.connection = connection;
+        Statement libraryStatement = null;
+        ResultSet libraryResultSet = null;
         try {
             // Creates a table for books if not existing
             connection.createStatement().execute("CREATE TABLE IF NOT EXISTS books (title TEXT, author TEXT, isBorrowed BOOLEAN)");
             // Query the books table
-            Statement libraryStatement = connection.createStatement();
-            ResultSet libraryResultSet = libraryStatement.executeQuery("SELECT title, author, isBorrowed FROM books");
+            libraryStatement = connection.createStatement();
+            libraryResultSet = libraryStatement.executeQuery("SELECT title, author, isBorrowed FROM books");
             // Add books from the table to the library
             while (libraryResultSet.next()) {
                 String title = libraryResultSet.getString("title");
@@ -53,11 +56,22 @@ public class Library {
                 }
                 this.books.add(book);
             }
-            libraryResultSet.close();
-            libraryStatement.close();
         } catch (SQLException e) {
             System.out.println("Error in connecting to the library database: " + e.getMessage());
             throw new RuntimeException(e);
+        } catch (InvalidParameterException e) {
+            throw new RuntimeException("Invalid argument when reading from database: " + e.getMessage());
+        } finally {
+            try {
+                if (libraryResultSet != null) {
+                    libraryResultSet.close();
+                }
+                if (libraryStatement != null) {
+                    libraryStatement.close();
+                }
+            } catch (SQLException e) {
+                System.err.println("Failed to close database resources: " + e.getMessage());
+            }
         }
     }
 
@@ -67,9 +81,9 @@ public class Library {
      * @param book the book to add
      * @return true if successful, otherwise false
      */
-    public boolean addBook(final Book book) {
+    public boolean addBook(final Book book) throws InvalidParameterException {
         if(book == null) {
-            throw new IllegalArgumentException();
+            throw new InvalidParameterException("Book must not be null.");
         }
         try {
             String query = "INSERT INTO books (title, author, isBorrowed) VALUES (?, ?, ?)";
@@ -111,11 +125,8 @@ public class Library {
      * @param titleAuthor the title or author of the book to search
      * @return the book if found, otherwise throws BookNotFoundException
      */
-    public Book searchBook(final String titleAuthor) throws BookNotFoundException {
-        if(titleAuthor == null)
-            throw new IllegalArgumentException("Title or Author cannot be null.");
-        if(titleAuthor.isBlank())
-            throw new IllegalArgumentException("Title or Author cannot be blank.");
+    public Book searchBook(final String titleAuthor) throws BookNotFoundException, InvalidParameterException {
+        validateTitle(titleAuthor);
         return books.stream()
             .filter(book -> book.getTitle().equalsIgnoreCase(titleAuthor) || book.getAuthor().equalsIgnoreCase(titleAuthor))
             .findFirst()
@@ -128,7 +139,7 @@ public class Library {
      * @param title the title of the book to borrow
      * @return true if the book is successfully borrowed
      */
-    public boolean borrowBook(final String title) throws BookNotFoundException, AlreadyBorrowedException {
+    public boolean borrowBook(final String title) throws BookNotFoundException, AlreadyBorrowedException, InvalidParameterException {
         validateTitle(title);
         Book book = searchBook(title);
         if (book.isBorrowed()) {
@@ -154,8 +165,7 @@ public class Library {
      * @param title the title of the book to return
      * @return true if the book is successfully returned, otherwise false
      */
-    public boolean returnBook(final String title) throws BookNotFoundException, NotBorrowedException {
-        validateTitle(title);
+    public boolean returnBook(final String title) throws BookNotFoundException, NotBorrowedException, InvalidParameterException {
         Book book = searchBook(title);
         if (!book.isBorrowed()) {
             throw new NotBorrowedException(BOOK_NOT_BORROWED);
@@ -174,12 +184,12 @@ public class Library {
         return book.returnBook();
     }
 
-    private static void validateTitle(String title) {
+    private static void validateTitle(final String title) throws InvalidParameterException {
         if(title == null) {
-            throw new IllegalArgumentException("Title must not be null.");
+            throw new InvalidParameterException("Title must not be null.");
         }
         if(title.isBlank()) {
-            throw new IllegalArgumentException("Title must not be blank.");
+            throw new InvalidParameterException("Title must not be blank.");
         }
     }
 }

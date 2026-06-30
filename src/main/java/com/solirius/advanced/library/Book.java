@@ -1,5 +1,7 @@
 package com.solirius.advanced.library;
 
+import com.solirius.advanced.library.exceptions.InvalidParameterException;
+
 /**
  * Represents a book in the library.
  */
@@ -27,7 +29,8 @@ public class Book {
      * @param theTitle  the title of the book
      * @param theAuthor the author of the book
      */
-    public Book(final String theTitle, final String theAuthor) {
+    public Book(final String theTitle, final String theAuthor) throws InvalidParameterException {
+        validateBook(theTitle, theAuthor);
         this.title = theTitle;
         this.author = theAuthor;
         this.isBorrowed = false;
@@ -94,5 +97,20 @@ public class Book {
      */
     public String getAuthor() {
         return author;
+    }
+
+    private static void validateBook(String title, String author) throws InvalidParameterException {
+        if(title == null) {
+            throw new InvalidParameterException("Title must not be null.");
+        }
+        if(title.isBlank()) {
+            throw new InvalidParameterException("Title must not be blank.");
+        }
+        if(author == null) {
+            throw new InvalidParameterException("Author must not be null");
+        }
+        if(author.isBlank()) {
+            throw new InvalidParameterException("Author must not be blank.");
+        }
     }
 }

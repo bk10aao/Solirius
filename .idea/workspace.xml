@@ -5,16 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b92a52b1-02b6-4ee4-b3f3-975ab08961fe" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/exceptions/InvalidParameterException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library.db" beforeDir="false" afterPath="$PROJECT_DIR$/library.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/BookTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/BookTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/LibraryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/LibraryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/MainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Book.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Library.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Library.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/solirius/advanced/library/BookTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/solirius/advanced/library/BookTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/solirius/advanced/library/MainTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/solirius/advanced/library/MainTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -32,8 +50,14 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "JUnit.BookTest.executor": "Run",
+    "JUnit.BookTest.whenConstructingBook_withNullAuthorAndNullTitle_throwInvalidParameterException.executor": "Run",
+    "JUnit.LibraryTest,whenAddingBook_withNullAuthorAndNullTitle_throwInvalidParameterException and 4 more.executor": "Run",
     "JUnit.LibraryTest.executor": "Run",
+    "JUnit.LibraryTest.testLibraryThrowsInvalidParameterException_whenReadingInvalidBookDataFromDatabase_onConstructor.executor": "Run",
     "JUnit.LibraryTest.testReturnBook_WhenBookIsNotBorrowed_byAuthor.executor": "Debug",
+    "JUnit.LibraryTest.whenAddingBook_withNullAuthor_throwsNullPointerException.executor": "Run",
+    "JUnit.LibraryTest.whenAddingBook_withNullTitle_throwsIllegalArgument.executor": "Run",
+    "JUnit.LibraryTest.whenAddingBook_withNullTitle_throwsNullPointerException.executor": "Run",
     "JUnit.LibraryTest.whenAddingBook_withNullValue_throwsIllegalArgument.executor": "Run",
     "JUnit.LibraryTest.whenAdding_nullBook_throwsIllegalArgumentException.executor": "Run",
     "JUnit.LibraryTest.whenBorrowingBook_returnsFalse_whenSqlExceptionIsThrown.executor": "Run",
@@ -46,6 +70,7 @@
     "JUnit.LibraryTest.whenReturningBook_withEmptyTitle_throwsIllegalArgumentException.executor": "Run",
     "JUnit.LibraryTest.whenReturningBook_withNullValue_throwsIllegalArgumentException.executor": "Run",
     "JUnit.LibraryTest.whenSearchingForBook_withBlankString_throwsIllegalArgumentException.executor": "Run",
+    "JUnit.LibraryTest.whenSearchingForBook_withBlankString_throwsInvalidParameterException.executor": "Run",
     "JUnit.LibraryTest.whenSearchingForBook_withEmptyString_throwsIllegalArgumentException.executor": "Run",
     "JUnit.LibraryTest.whenSearchingForBook_withNullValue_throwsIllegalArgumentException.executor": "Run",
     "JUnit.MainTest.executor": "Run",
@@ -62,7 +87,38 @@
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.LibraryTest.whenAddingBook_withNullValue_throwsIllegalArgument">
+  <component name="RunManager" selected="JUnit.LibraryTest">
+    <configuration name="BookTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-guild-candidate-test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.solirius.advanced.library.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.solirius.advanced.library" />
+      <option name="MAIN_CLASS_NAME" value="com.solirius.advanced.library.BookTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookTest.whenConstructingBook_withNullAuthorAndNullTitle_throwInvalidParameterException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-guild-candidate-test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.solirius.advanced.library.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.solirius.advanced.library" />
+      <option name="MAIN_CLASS_NAME" value="com.solirius.advanced.library.BookTest" />
+      <option name="METHOD_NAME" value="whenConstructingBook_withNullAuthorAndNullTitle_throwInvalidParameterException" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LibraryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-guild-candidate-test" />
       <extension name="coverage">
@@ -78,7 +134,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LibraryTest.whenAddingBook_withNullValue_throwsIllegalArgument" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LibraryTest.testLibraryThrowsInvalidParameterException_whenReadingInvalidBookDataFromDatabase_onConstructor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-guild-candidate-test" />
       <extension name="coverage">
         <pattern>
@@ -88,56 +144,22 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.solirius.advanced.library" />
       <option name="MAIN_CLASS_NAME" value="com.solirius.advanced.library.LibraryTest" />
-      <option name="METHOD_NAME" value="whenAddingBook_withNullValue_throwsIllegalArgument" />
+      <option name="METHOD_NAME" value="testLibraryThrowsInvalidParameterException_whenReadingInvalidBookDataFromDatabase_onConstructor" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LibraryTest.whenAdding_nullBook_throwsIllegalArgumentException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LibraryTest,whenAddingBook_withNullAuthorAndNullTitle_throwInvalidParameterException and 4 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-guild-candidate-test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.solirius.advanced.library.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.solirius.advanced.library" />
-      <option name="MAIN_CLASS_NAME" value="com.solirius.advanced.library.LibraryTest" />
-      <option name="METHOD_NAME" value="whenAdding_nullBook_throwsIllegalArgumentException" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LibraryTest.whenSearchingForBook_withBlankString_throwsIllegalArgumentException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="java-guild-candidate-test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.solirius.advanced.library.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.solirius.advanced.library" />
-      <option name="MAIN_CLASS_NAME" value="com.solirius.advanced.library.LibraryTest" />
-      <option name="METHOD_NAME" value="whenSearchingForBook_withBlankString_throwsIllegalArgumentException" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LibraryTest.whenSearchingForBook_withEmptyString_throwsIllegalArgumentException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="java-guild-candidate-test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.solirius.advanced.library.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.solirius.advanced.library" />
-      <option name="MAIN_CLASS_NAME" value="com.solirius.advanced.library.LibraryTest" />
-      <option name="METHOD_NAME" value="whenSearchingForBook_withEmptyString_throwsIllegalArgumentException" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="pattern" />
+      <patterns>
+        <pattern testClass="com.solirius.advanced.library.LibraryTest,whenAddingBook_withNullAuthorAndNullTitle_throwInvalidParameterException" />
+        <pattern testClass="com.solirius.advanced.library.LibraryTest,whenAdding_nullBook_throwsInvalidParameterException" />
+        <pattern testClass="com.solirius.advanced.library.LibraryTest,whenAddingBook_withNullTitle_throwsInvalidParameterException" />
+        <pattern testClass="com.solirius.advanced.library.LibraryTest,whenAddingBook_withNullAuthor_throwsInvalidParameterException" />
+        <pattern testClass="com.solirius.advanced.library.LibraryTest,whenAddingBook_withEmptyTitle_throwsInvalidParameterException" />
+      </patterns>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -191,11 +213,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LibraryTest.whenAddingBook_withNullValue_throwsIllegalArgument" />
-        <item itemvalue="JUnit.LibraryTest.whenAdding_nullBook_throwsIllegalArgumentException" />
         <item itemvalue="JUnit.LibraryTest" />
-        <item itemvalue="JUnit.LibraryTest.whenSearchingForBook_withBlankString_throwsIllegalArgumentException" />
-        <item itemvalue="JUnit.LibraryTest.whenSearchingForBook_withEmptyString_throwsIllegalArgumentException" />
+        <item itemvalue="JUnit.LibraryTest.testLibraryThrowsInvalidParameterException_whenReadingInvalidBookDataFromDatabase_onConstructor" />
+        <item itemvalue="JUnit.BookTest" />
+        <item itemvalue="JUnit.BookTest.whenConstructingBook_withNullAuthorAndNullTitle_throwInvalidParameterException" />
+        <item itemvalue="JUnit.LibraryTest,whenAddingBook_withNullAuthorAndNullTitle_throwInvalidParameterException and 4 more" />
       </list>
     </recent_temporary>
   </component>
@@ -215,63 +237,68 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/LibraryTest.java</url>
-          <line>267</line>
+          <line>279</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java</url>
-          <line>144</line>
+          <line>155</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java</url>
-          <line>74</line>
+          <line>88</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java</url>
-          <line>118</line>
+          <line>129</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java</url>
-          <line>132</line>
+          <line>143</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java</url>
-          <line>158</line>
+          <line>168</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Main.java</url>
-          <line>142</line>
+          <line>148</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Main.java</url>
-          <line>134</line>
+          <line>135</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Main.java</url>
-          <line>161</line>
+          <line>167</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Main.java</url>
-          <line>180</line>
+          <line>186</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Main.java</url>
-          <line>190</line>
+          <line>198</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Main.java</url>
-          <line>200</line>
+          <line>208</line>
           <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/LibraryTest.java</url>
+          <line>111</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

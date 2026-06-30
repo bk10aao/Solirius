@@ -2,6 +2,7 @@ package com.solirius.advanced.library;
 
 import com.solirius.advanced.library.exceptions.AlreadyBorrowedException;
 import com.solirius.advanced.library.exceptions.BookNotFoundException;
+import com.solirius.advanced.library.exceptions.InvalidParameterException;
 import com.solirius.advanced.library.exceptions.NotBorrowedException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -136,7 +137,12 @@ public final class Main {
                     title = scanner.nextLine();
                     System.out.print(ENTER_AUTHOR);
                     String author = scanner.nextLine();
-                    boolean success = library.addBook(new Book(title, author));
+                    boolean success = false;
+                    try {
+                        success = library.addBook(new Book(title, author));
+                    } catch (InvalidParameterException e) {
+                        System.out.println(e.getMessage());
+                    }
                     System.out.println(success ? BOOK_ADDED : BOOK_NOT_ADDED);
                     break;
                 case LIST_ALL_BOOKS:
@@ -185,6 +191,8 @@ public final class Main {
                         System.out.println(book);
                     } catch (BookNotFoundException bookNotFoundException) {
                         System.out.println(bookNotFoundException.getMessage());
+                    } catch (InvalidParameterException invalidParameterException) {
+                        System.out.printf(invalidParameterException.getMessage());
                     }
                     break;
                 case BORROW_BOOK_OPTION:
@@ -193,8 +201,8 @@ public final class Main {
                     try {
                         library.borrowBook(title);
                         System.out.println(BORROWED);
-                    } catch (BookNotFoundException | AlreadyBorrowedException bookNotFoundException) {
-                        System.out.println(bookNotFoundException.getMessage());
+                    } catch (BookNotFoundException | AlreadyBorrowedException | InvalidParameterException e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case RETURN_BOOK_OPTION:
@@ -203,7 +211,7 @@ public final class Main {
                     try {
                         library.returnBook(title);
                         System.out.println(RETURNED);
-                    } catch (BookNotFoundException | NotBorrowedException e) {
+                    } catch (BookNotFoundException | NotBorrowedException | InvalidParameterException e) {
                         System.out.println(e.getMessage());
                     }
                     break;
