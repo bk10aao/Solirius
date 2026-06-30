@@ -1,12 +1,13 @@
 # Notes
-1. Added JaCoCo
+1. Added JaCoCo.
 2. Added missing edge case in `LibraryTest` where Library is initialised with 1 book already borrowed.
 3. Added missing edge case in `LibraryTest` where Library is initialised with 1 book, but search for non existent author throws exception.
 4. Added borrow book functionality.
 5. Added return book functionality.
 6. Fixed menu mismatch causing problems with `View All Books` and `View Available Books`.
 7. Added null checks for search, borrow and return book.
-8. Added InvalidParameterException
+8. Added InvalidParameterException.
+9. Added method `getBooksByAuthor(final String author)` to get all books by author.
 
 This repository contains a Java challenge designed to assess the skills of a Java Guild candidate. The challenge includes problem-solving, coding, and demonstrating knowledge of Java fundamentals and best practices.
 

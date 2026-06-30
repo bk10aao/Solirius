@@ -1,6 +1,7 @@
 package com.solirius.advanced.library;
 
 import com.solirius.advanced.library.exceptions.AlreadyBorrowedException;
+import com.solirius.advanced.library.exceptions.AuthorNotFoundException;
 import com.solirius.advanced.library.exceptions.BookNotFoundException;
 import com.solirius.advanced.library.exceptions.InvalidParameterException;
 import com.solirius.advanced.library.exceptions.NotBorrowedException;
@@ -22,7 +23,8 @@ public final class Main {
         + "\n4. Search for a book"
         + "\n5. Borrow a book"
         + "\n6. Return a book"
-        + "\n7. Exit"
+        + "\n7. Get books by author"
+        + "\n8. Exit"
         + "\nEnter your choice: ";
 
     /**
@@ -74,9 +76,14 @@ public final class Main {
     public static final int RETURN_BOOK_OPTION = 6;
 
     /**
+     * Option get Book by author.
+     */
+    public static final int GET_AUTHOR_BOOKS = 7;
+
+    /**
      * Option to terminate the program.
      */
-    public static final int EXIT_OPTION = 7;
+    public static final int EXIT_OPTION = 8;
 
     /**
      * String constants.
@@ -96,6 +103,8 @@ public final class Main {
     public static final String TITLE_AUTHOR_SEARCH = "Enter the title or author of the book to search: ";
     public static final String TITLE_BORROW = "Enter the title of the book to borrow: ";
     public static final String TITLE_RETURN = "Enter the title of the book to return: ";
+    public static final String BOOKS_BY_AUTHOR = "Enter author to find books by: ";
+
 
     private static Library library;
 
@@ -128,7 +137,7 @@ public final class Main {
 
         while (running) {
             System.out.println(MENU);
-            int choice = validateChoices(scanner, 1, 7);
+            int choice = validateChoices(scanner, 1, 8);
             scanner.nextLine(); // Consume newline
             String title;
             switch (choice) {
@@ -212,6 +221,17 @@ public final class Main {
                         library.returnBook(title);
                         System.out.println(RETURNED);
                     } catch (BookNotFoundException | NotBorrowedException | InvalidParameterException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case GET_AUTHOR_BOOKS:
+                    System.out.print(BOOKS_BY_AUTHOR);
+                    author = scanner.nextLine();
+                    try {
+                        library.getBooksByAuthor(author).stream()
+                                .sorted(Comparator.comparing(Book::getAuthor))
+                                .forEach(System.out::println);
+                    } catch (InvalidParameterException | AuthorNotFoundException e) {
                         System.out.println(e.getMessage());
                     }
                     break;

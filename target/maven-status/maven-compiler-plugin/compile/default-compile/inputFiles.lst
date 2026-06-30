@@ -2,6 +2,7 @@
 /Users/drpsychoben/Desktop/solirius/src/main/java/com/solirius/advanced/library/Library.java
 /Users/drpsychoben/Desktop/solirius/src/main/java/com/solirius/advanced/library/Main.java
 /Users/drpsychoben/Desktop/solirius/src/main/java/com/solirius/advanced/library/exceptions/AlreadyBorrowedException.java
+/Users/drpsychoben/Desktop/solirius/src/main/java/com/solirius/advanced/library/exceptions/AuthorNotFoundException.java
 /Users/drpsychoben/Desktop/solirius/src/main/java/com/solirius/advanced/library/exceptions/BookNotFoundException.java
 /Users/drpsychoben/Desktop/solirius/src/main/java/com/solirius/advanced/library/exceptions/InvalidParameterException.java
 /Users/drpsychoben/Desktop/solirius/src/main/java/com/solirius/advanced/library/exceptions/NotBorrowedException.java

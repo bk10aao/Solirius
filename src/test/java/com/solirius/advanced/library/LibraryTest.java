@@ -12,6 +12,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.solirius.advanced.library.exceptions.AlreadyBorrowedException;
+import com.solirius.advanced.library.exceptions.AuthorNotFoundException;
 import com.solirius.advanced.library.exceptions.BookNotFoundException;
 import com.solirius.advanced.library.exceptions.InvalidParameterException;
 import com.solirius.advanced.library.exceptions.NotBorrowedException;
@@ -351,5 +352,83 @@ class LibraryTest {
     void whenAdding_nullBook_throwsInvalidParameterException() {
         library = new Library(mockConnection);
         assertThrows(InvalidParameterException.class, () -> library.addBook(null));
+    }
+
+    @Test
+    void whenSearchingForBooksByAuthor_withNull_throwsInvalidArgumentException() {
+        library = new Library(mockConnection);
+        assertThrows(InvalidParameterException.class, () -> library.getBooksByAuthor(null));
+    }
+
+    @Test
+    void whenSearchingForBooksByAuthor_withEmptyString_throwsInvalidArgumentException() {
+        library = new Library(mockConnection);
+        assertThrows(InvalidParameterException.class, () -> library.getBooksByAuthor(""));
+    }
+
+    @Test
+    void whenSearchingForBooksByAuthor_withBlankString_throwsInvalidArgumentException() {
+        library = new Library(mockConnection);
+        assertThrows(InvalidParameterException.class, () -> library.getBooksByAuthor("     "));
+    }
+
+    @Test
+    void whenSearchingForBooksByAuthor_whereAuthorHasNoBooks_throwAuthorNotFoundException() throws InvalidParameterException {
+        library = new Library(mockConnection);
+        Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "Jon Skeet");
+        library.addBook(book);
+        assertThrows(AuthorNotFoundException.class, () -> library.getBooksByAuthor("Bob"));
+    }
+
+    @Test
+    void whenSearchingForBooksByAuthor_whereAuthorOneBooks_returnsCorrectBook() throws InvalidParameterException, AuthorNotFoundException {
+        library = new Library(mockConnection);
+        Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "Jon Skeet");
+        library.addBook(book);
+        List<Book> authorBooks = library.getBooksByAuthor("Jon Skeet");
+        assertEquals(1, authorBooks.size());
+        Book returnedBook = authorBooks.get(0);
+        assertEquals("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", returnedBook.getTitle());
+        assertEquals("Jon Skeet", returnedBook.getAuthor());
+    }
+
+    @Test
+    void whenSearchingForBooksByAuthor_whereAuthorHasTwoBooks_returnsCorrectBooks() throws InvalidParameterException, AuthorNotFoundException {
+        library = new Library(mockConnection);
+        Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "Jon Skeet");
+        Book bookTwo = new Book("C# In deoth", "Jon Skeet");
+        library.addBook(book);
+        library.addBook(bookTwo);
+        List<Book> authorBooks = library.getBooksByAuthor("Jon Skeet");
+        assertEquals(2, authorBooks.size());
+        Book returnBook = authorBooks.get(0);
+        assertEquals("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", returnBook.getTitle());
+        assertEquals("Jon Skeet", returnBook.getAuthor());
+        Book returnBookTwo = authorBooks.get(1);
+        assertEquals("C# In deoth", returnBookTwo.getTitle());
+        assertEquals("Jon Skeet", returnBookTwo.getAuthor());
+    }
+
+    @Test
+    void whenSearchingForBooksByAuthor_whereAuthorTwoBooks_AndThereIsASecondAuthor_returnsCorrectBooks() throws InvalidParameterException, AuthorNotFoundException {
+        library = new Library(mockConnection);
+        Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "Jon Skeet");
+        Book bookTwo = new Book("C# In deoth", "Jon Skeet");
+        Book bookThree = new Book("Clean Code", "Robert C. Martin");
+        library.addBook(book);
+        library.addBook(bookTwo);
+        library.addBook(bookThree);
+        List<Book> authorBooksOne = library.getBooksByAuthor("Jon Skeet");
+        assertEquals(2, authorBooksOne.size());
+        Book returnBook = authorBooksOne.get(0);
+        assertEquals("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", returnBook.getTitle());
+        assertEquals("Jon Skeet", returnBook.getAuthor());
+        Book returnBookTwo = authorBooksOne.get(1);
+        assertEquals("C# In deoth", returnBookTwo.getTitle());
+        assertEquals("Jon Skeet", returnBookTwo.getAuthor());
+        List<Book> authorBooksTwo = library.getBooksByAuthor("Robert C. Martin");
+        Book returnedBookThree = authorBooksTwo.get(0);
+        assertEquals("Clean Code", returnedBookThree.getTitle());
+        assertEquals("Robert C. Martin", returnedBookThree.getAuthor());
     }
 }

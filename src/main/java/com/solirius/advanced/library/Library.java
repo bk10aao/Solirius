@@ -1,6 +1,7 @@
 package com.solirius.advanced.library;
 
 import com.solirius.advanced.library.exceptions.AlreadyBorrowedException;
+import com.solirius.advanced.library.exceptions.AuthorNotFoundException;
 import com.solirius.advanced.library.exceptions.BookNotFoundException;
 import com.solirius.advanced.library.exceptions.InvalidParameterException;
 import com.solirius.advanced.library.exceptions.NotBorrowedException;
@@ -134,6 +135,21 @@ public class Library {
     }
 
     /**
+     * Gets all books by author.
+     *
+     * @param author the author of the books to get from library
+     * @return the book if found, otherwise throws BookNotFoundException
+     */
+    public List<Book> getBooksByAuthor(final String author) throws InvalidParameterException, AuthorNotFoundException {
+        validateAuthor(author);
+        List<Book> authorBooks =  books.stream().filter(book -> book.getAuthor().equalsIgnoreCase(author)).collect(Collectors.toList());
+        if(authorBooks.isEmpty()) {
+            throw new AuthorNotFoundException("No books found for author: " + author);
+        }
+        return authorBooks;
+    }
+
+    /**
      * Borrows a book by its title.
      *
      * @param title the title of the book to borrow
@@ -190,6 +206,15 @@ public class Library {
         }
         if(title.isBlank()) {
             throw new InvalidParameterException("Title must not be blank.");
+        }
+    }
+
+    private static void validateAuthor(final String author) throws InvalidParameterException {
+        if(author == null) {
+            throw new InvalidParameterException("Author must not be null.");
+        }
+        if(author.isBlank()) {
+            throw new InvalidParameterException("Author must not be blank.");
         }
     }
 }

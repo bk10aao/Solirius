@@ -1,5 +1,6 @@
 com/solirius/advanced/library/exceptions/package-info.class
 com/solirius/advanced/library/Book.class
+com/solirius/advanced/library/exceptions/AuthorNotFoundException.class
 com/solirius/advanced/library/package-info.class
 com/solirius/advanced/library/exceptions/AlreadyBorrowedException.class
 com/solirius/advanced/library/exceptions/InvalidParameterException.class

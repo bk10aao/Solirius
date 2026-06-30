@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import com.solirius.advanced.library.exceptions.AlreadyBorrowedException;
+import com.solirius.advanced.library.exceptions.AuthorNotFoundException;
 import com.solirius.advanced.library.exceptions.BookNotFoundException;
 import com.solirius.advanced.library.exceptions.InvalidParameterException;
 import com.solirius.advanced.library.exceptions.NotBorrowedException;
@@ -56,7 +57,7 @@ class MainTest {
 
     @Test
     void testMain_InvalidChoice() {
-        String input = "8\n7\n";
+        String input = "9\n8\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -72,7 +73,7 @@ class MainTest {
 
     @Test
     void testMain_AddBook() throws InvalidParameterException {
-        String input = "1\nMock Title\nMock Author\n7\n";
+        String input = "1\nMock Title\nMock Author\n8\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -91,7 +92,7 @@ class MainTest {
 
     @Test
     void testMain_AddBookFail() throws InvalidParameterException {
-        String input = "1\nMock Title 1\nMock Author 2\n7\n";
+        String input = "1\nMock Title 1\nMock Author 2\n8\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         when(mockLibrary.addBook(any())).thenReturn(false);
@@ -111,7 +112,7 @@ class MainTest {
 
     @Test
     void testMain_ViewAvailableBooks_SortedInvalid() {
-        String input = "2\n3\n2\n7\n";
+        String input = "2\n3\n2\n8\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -129,7 +130,7 @@ class MainTest {
 
     @Test
     void testMain_ViewAvailableBooks_SortedByAuthor() {
-        String input = "2\n1\n7\n";
+        String input = "2\n1\n8\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -148,7 +149,7 @@ class MainTest {
 
     @Test
     void testMain_ViewAvailableBooks_SortedByTitle() {
-        String input = "2\n2\n7\n";
+        String input = "2\n2\n8\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -167,7 +168,7 @@ class MainTest {
 
     @Test
     void testMain_ViewAllBooks_SortedInvalid() {
-        String input = "3\n3\n2\n7\n";
+        String input = "3\n3\n2\n8\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -185,7 +186,7 @@ class MainTest {
 
     @Test
     void testMain_ViewAllBooks_SortedByAuthor() {
-        String input = "3\n1\n7\n";
+        String input = "3\n1\n8\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -204,7 +205,7 @@ class MainTest {
 
     @Test
     void testMain_ViewAllBooks_SortedByTitle() {
-        String input = "3\n2\n7\n";
+        String input = "3\n2\n8\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -223,7 +224,7 @@ class MainTest {
 
     @Test
     void testMain_SearchBook() throws BookNotFoundException, InvalidParameterException {
-        String input = "4\nMock Title 1\n7\n";
+        String input = "4\nMock Title 1\n8\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -241,7 +242,7 @@ class MainTest {
 
     @Test
     void testMain_SearchBookFailed() throws BookNotFoundException, InvalidParameterException {
-        String input = "4\nMock Title\n7\n";
+        String input = "4\nMock Title\n8\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         when(mockLibrary.searchBook(anyString())).thenThrow(new BookNotFoundException(BOOK_NOT_FOUND));
@@ -260,7 +261,7 @@ class MainTest {
 
     @Test
     void testMain_BorrowBook() throws BookNotFoundException, AlreadyBorrowedException, InvalidParameterException  {
-        String input = "5\nMock Title\n7\n";
+        String input = "5\nMock Title\n8\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -278,7 +279,7 @@ class MainTest {
 
     @Test
     void testMain_BorrowBookFailed() throws BookNotFoundException, AlreadyBorrowedException, InvalidParameterException  {
-        String input = "5\nMock Title\n7\n";
+        String input = "5\nMock Title\n8\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         when(mockLibrary.borrowBook(anyString())).thenThrow(new AlreadyBorrowedException(BOOK_ALREADY_BORROWED));
@@ -297,7 +298,7 @@ class MainTest {
 
     @Test
     void testMain_ReturnBook() throws BookNotFoundException, NotBorrowedException, InvalidParameterException  {
-        String input = "6\nMock Title\n7\n";
+        String input = "6\nMock Title\n8\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -315,7 +316,7 @@ class MainTest {
 
     @Test
     void testMain_ReturnBookFailed() throws BookNotFoundException, NotBorrowedException, InvalidParameterException  {
-        String input = "6\nMock Title\n7\n";
+        String input = "6\nMock Title\n8\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         when(mockLibrary.returnBook(anyString())).thenThrow(new NotBorrowedException(BOOK_NOT_BORROWED));
@@ -334,7 +335,7 @@ class MainTest {
 
     @Test
     void testMain_Exit() {
-        String input = "7\n";
+        String input = "8\n";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
 
@@ -344,6 +345,20 @@ class MainTest {
         assertTrue(output.contains(OPENED));
         assertTrue(output.contains(WELCOME));
         assertTrue(output.contains(MENU));
+        assertTrue(output.contains(EXIT));
+    }
+
+    @Test
+    void testMain_getBooksByAuthor() throws InvalidParameterException, AuthorNotFoundException {
+        String input = "7\nMock Author 1\n8\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        when(mockLibrary.getBooksByAuthor("Mock Author 1")).thenReturn(List.of(book3));
+        Main.main(new String[]{});
+        verify(mockLibrary).getBooksByAuthor("Mock Author 1");
+        String output = outputStreamCaptor.toString().trim();
+        assertTrue(output.contains(BOOKS_BY_AUTHOR));
+        assertTrue(output.contains(book3.toString()));
         assertTrue(output.contains(EXIT));
     }
 }
