@@ -21,6 +21,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.internal.matchers.Null;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -278,5 +279,41 @@ class LibraryTest {
         when(mockConnection.prepareStatement(anyString())).thenThrow(new SQLException("Error"));
         boolean result = library.returnBook("Jon Skeet");
         assertFalse(result);
+    }
+
+    @Test
+    void whenBorrowingBook_withNullValue_throwsIllegalArgumentException() {
+        library = new Library(mockConnection);
+        assertThrows(IllegalArgumentException.class, () -> library.borrowBook(null));
+    }
+
+    @Test
+    void whenBorrowingBook_withEmptyTitle_throwsIllegalArgumentException() {
+        library = new Library(mockConnection);
+        assertThrows(IllegalArgumentException.class, () -> library.borrowBook(""));
+    }
+
+    @Test
+    void whenBorrowingBook_withEmptyString_throwsIllegalArgumentException() {
+        library = new Library(mockConnection);
+        assertThrows(IllegalArgumentException.class, () -> library.borrowBook("    "));
+    }
+
+    @Test
+    void whenReturningBook_withNullValue_throwsIllegalArgumentException() {
+        library = new Library(mockConnection);
+        assertThrows(IllegalArgumentException.class, () -> library.returnBook(null));
+    }
+
+    @Test
+    void whenReturningBook_withEmptyTitle_throwsIllegalArgumentException() {
+        library = new Library(mockConnection);
+        assertThrows(IllegalArgumentException.class, () -> library.returnBook(""));
+    }
+
+    @Test
+    void whenReturningBook_withEmptyString_throwsIllegalArgumentException() {
+        library = new Library(mockConnection);
+        assertThrows(IllegalArgumentException.class, () -> library.returnBook("    "));
     }
 }

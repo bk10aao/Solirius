@@ -122,6 +122,12 @@ public class Library {
      * @return true if the book is successfully borrowed
      */
     public boolean borrowBook(final String title) throws BookNotFoundException, AlreadyBorrowedException {
+        if(title == null) {
+            throw new IllegalArgumentException("Title must not be null");
+        }
+        if(title.isBlank()) {
+            throw new IllegalArgumentException("Title must not be blank");
+        }
         Book book = searchBook(title);
         if (book.isBorrowed()) {
             throw new AlreadyBorrowedException(BOOK_ALREADY_BORROWED);
@@ -147,6 +153,12 @@ public class Library {
      * @return true if the book is successfully returned, otherwise false
      */
     public boolean returnBook(final String title) throws BookNotFoundException, NotBorrowedException {
+        if(title == null) {
+            throw new IllegalArgumentException("Title must not be null");
+        }
+        if(title.isBlank()) {
+            throw new IllegalArgumentException("Title must not be blank");
+        }
         Book book = searchBook(title);
         if (!book.isBorrowed()) {
             throw new NotBorrowedException(BOOK_NOT_BORROWED);
