@@ -132,8 +132,8 @@ public class Library {
         if (book.isBorrowed()) {
             throw new AlreadyBorrowedException(BOOK_ALREADY_BORROWED);
         }
-        String borrowQuery = "UPDATE books SET isBorrowed = ? WHERE title = ?";
         try {
+            String borrowQuery = "UPDATE books SET isBorrowed = ? WHERE title = ?";
             var preparedStatement = connection.prepareStatement(borrowQuery);
             preparedStatement.setBoolean(1, true);
             preparedStatement.setString(2, book.getTitle());
@@ -163,8 +163,8 @@ public class Library {
         if (!book.isBorrowed()) {
             throw new NotBorrowedException(BOOK_NOT_BORROWED);
         }
-        String returnQuery = "UPDATE books SET isBorrowed = ? WHERE title = ?";
         try {
+            String returnQuery = "UPDATE books SET isBorrowed = ? WHERE title = ?";
             var preparedStatement = connection.prepareStatement(returnQuery);
             preparedStatement.setBoolean(1, false);
             preparedStatement.setString(2, book.getTitle());
