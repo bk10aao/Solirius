@@ -1,7 +1,7 @@
 package com.solirius.advanced.library.exceptions;
 
 /**
- * Exception thrown when attempting to borrow a book that is already borrowed.
+ * Exception thrown when attempting to find a non-existent Author.
  */
 public class AuthorNotFoundException extends Exception {
     /**
