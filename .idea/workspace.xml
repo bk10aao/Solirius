@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b92a52b1-02b6-4ee4-b3f3-975ab08961fe" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library.db" beforeDir="false" afterPath="$PROJECT_DIR$/library.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/LibraryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/LibraryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Library.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/solirius/advanced/library/Library.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,63 +35,65 @@
     <option name="showLibraryContents" value="true" />
     <option name="sortKey" value="BY_TIME_ASCENDING" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.BookTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.BookTest.whenConstructingBook_withNullAuthorAndNullTitle_throwInvalidParameterException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest,whenAddingBook_withNullAuthorAndNullTitle_throwInvalidParameterException and 4 more.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.testLibraryThrowsInvalidParameterException_whenReadingInvalidBookDataFromDatabase_onConstructor.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.testReturnBook_WhenBookIsNotBorrowed_byAuthor.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.LibraryTest.testSearchBook_byAuthorName_Jon_Skeet_returnsCorrectBookTitle.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenAddingBook_withNullAuthor_throwsNullPointerException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenAddingBook_withNullTitle_throwsIllegalArgument.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenAddingBook_withNullTitle_throwsNullPointerException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenAddingBook_withNullValue_throwsIllegalArgument.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenAdding_nullBook_throwsIllegalArgumentException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenBorrowingBook_returnsFalse_whenSqlExceptionIsThrown.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenBorrowingBook_tests_sqlExceptionIsThrown.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.LibraryTest.whenBorrowingBook_withEmptyString_throwsIllegalArgumentException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenBorrowingBook_withEmptyTitle_throwsIllegalArgumentException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenBorrowingBook_withNullValue_throwsIllegalArguementException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenReturningBook_returnsFalse_whenSqlExceptionIsThrown.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenReturningBook_withEmptyString_throwsIllegalArgumentException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenReturningBook_withEmptyTitle_throwsIllegalArgumentException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenReturningBook_withNullValue_throwsIllegalArgumentException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenSearchingForBook_withBlankString_throwsIllegalArgumentException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenSearchingForBook_withBlankString_throwsInvalidParameterException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenSearchingForBook_withEmptyString_throwsIllegalArgumentException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenSearchingForBook_withNullValue_throwsIllegalArgumentException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenSearchingForBooksByAuthor_whereAuthorHasNoBooks_returnEmptyCollection.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenSearchingForBooksByAuthor_whereAuthorHasNoBooks_throwAuthorNotFoundException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenSearchingForBooksByAuthor_whereAuthorOneBooks_returnsCorrectBook.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenSearchingForBooksByAuthor_whereAuthorTwoBooks_AndThereIsASecondAuthor_returnsCorrectBooks.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenSearchingForBooksByAuthor_whereAuthorTwoBooks_returnsCorrectBooks.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenSearchingForBooksByAuthor_withBlankString_throwsInvalidArgumentException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenSearchingForBooksByAuthor_withEmptyString_throwsInvalidArgumentException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LibraryTest.whenSearchingForBooksByAuthor_withNull_throwsInvalidArgumentException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MainTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MainTest.testMain_AddBook.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.MainTest.testMain_ViewAllBooks_SortedInvalid.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MainTest.testMain_ViewAvailableBooks_SortedByTitle.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.MainTest.testMain_ViewAvailableBooks_SortedInvalid.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/drpsychoben/Desktop/solirius/pom.xml&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "JUnit.BookTest.executor": "Run",
+    "JUnit.BookTest.whenConstructingBook_withNullAuthorAndNullTitle_throwInvalidParameterException.executor": "Run",
+    "JUnit.LibraryTest,whenAddingBook_withNullAuthorAndNullTitle_throwInvalidParameterException and 4 more.executor": "Run",
+    "JUnit.LibraryTest.executor": "Run",
+    "JUnit.LibraryTest.testLibraryThrowsInvalidParameterException_whenReadingInvalidBookDataFromDatabase_onConstructor.executor": "Run",
+    "JUnit.LibraryTest.testReturnBook_WhenBookIsNotBorrowed_byAuthor.executor": "Debug",
+    "JUnit.LibraryTest.testSearchBook_byAuthorName_Jon_Skeet_returnsCorrectBookTitle.executor": "Run",
+    "JUnit.LibraryTest.whenAddingBook_withNullAuthor_throwsNullPointerException.executor": "Run",
+    "JUnit.LibraryTest.whenAddingBook_withNullTitle_throwsIllegalArgument.executor": "Run",
+    "JUnit.LibraryTest.whenAddingBook_withNullTitle_throwsNullPointerException.executor": "Run",
+    "JUnit.LibraryTest.whenAddingBook_withNullValue_throwsIllegalArgument.executor": "Run",
+    "JUnit.LibraryTest.whenAdding_nullBook_throwsIllegalArgumentException.executor": "Run",
+    "JUnit.LibraryTest.whenBorrowingBook_returnsFalse_whenSqlExceptionIsThrown.executor": "Run",
+    "JUnit.LibraryTest.whenBorrowingBook_tests_sqlExceptionIsThrown.executor": "Debug",
+    "JUnit.LibraryTest.whenBorrowingBook_withEmptyString_throwsIllegalArgumentException.executor": "Run",
+    "JUnit.LibraryTest.whenBorrowingBook_withEmptyTitle_throwsIllegalArgumentException.executor": "Run",
+    "JUnit.LibraryTest.whenBorrowingBook_withNullValue_throwsIllegalArguementException.executor": "Run",
+    "JUnit.LibraryTest.whenReturningBook_returnsFalse_whenSqlExceptionIsThrown.executor": "Run",
+    "JUnit.LibraryTest.whenReturningBook_withEmptyString_throwsIllegalArgumentException.executor": "Run",
+    "JUnit.LibraryTest.whenReturningBook_withEmptyTitle_throwsIllegalArgumentException.executor": "Run",
+    "JUnit.LibraryTest.whenReturningBook_withNullValue_throwsIllegalArgumentException.executor": "Run",
+    "JUnit.LibraryTest.whenSearchingForBook_withBlankString_throwsIllegalArgumentException.executor": "Run",
+    "JUnit.LibraryTest.whenSearchingForBook_withBlankString_throwsInvalidParameterException.executor": "Run",
+    "JUnit.LibraryTest.whenSearchingForBook_withEmptyString_throwsIllegalArgumentException.executor": "Run",
+    "JUnit.LibraryTest.whenSearchingForBook_withNullValue_throwsIllegalArgumentException.executor": "Run",
+    "JUnit.LibraryTest.whenSearchingForBooksByAuthor_whereAuthorHasNoBooks_returnEmptyCollection.executor": "Run",
+    "JUnit.LibraryTest.whenSearchingForBooksByAuthor_whereAuthorHasNoBooks_throwAuthorNotFoundException.executor": "Run",
+    "JUnit.LibraryTest.whenSearchingForBooksByAuthor_whereAuthorHasTwoBooks_returnsCorrectBooks_sortedAlphabetically.executor": "Run",
+    "JUnit.LibraryTest.whenSearchingForBooksByAuthor_whereAuthorOneBooks_returnsCorrectBook.executor": "Run",
+    "JUnit.LibraryTest.whenSearchingForBooksByAuthor_whereAuthorTwoBooks_AndThereIsASecondAuthor_returnsCorrectBooks.executor": "Run",
+    "JUnit.LibraryTest.whenSearchingForBooksByAuthor_whereAuthorTwoBooks_AndThereIsASecondAuthor_returnsCorrectBooks_sortedAlphabetically.executor": "Run",
+    "JUnit.LibraryTest.whenSearchingForBooksByAuthor_whereAuthorTwoBooks_returnsCorrectBooks.executor": "Run",
+    "JUnit.LibraryTest.whenSearchingForBooksByAuthor_withBlankString_throwsInvalidArgumentException.executor": "Run",
+    "JUnit.LibraryTest.whenSearchingForBooksByAuthor_withEmptyString_throwsInvalidArgumentException.executor": "Run",
+    "JUnit.LibraryTest.whenSearchingForBooksByAuthor_withNull_throwsInvalidArgumentException.executor": "Run",
+    "JUnit.MainTest.executor": "Run",
+    "JUnit.MainTest.testMain_AddBook.executor": "Debug",
+    "JUnit.MainTest.testMain_ViewAllBooks_SortedInvalid.executor": "Run",
+    "JUnit.MainTest.testMain_ViewAvailableBooks_SortedByTitle.executor": "Run",
+    "JUnit.MainTest.testMain_ViewAvailableBooks_SortedInvalid.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/drpsychoben/Desktop/solirius/pom.xml",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.solirius.advanced.library.exceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BookTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.solirius.advanced.library.Main" />
       <module name="java-guild-candidate-test" />
@@ -132,7 +137,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LibraryTest.whenReturningBook_returnsFalse_whenSqlExceptionIsThrown" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LibraryTest.whenSearchingForBooksByAuthor_whereAuthorHasTwoBooks_returnsCorrectBooks_sortedAlphabetically" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-guild-candidate-test" />
       <extension name="coverage">
         <pattern>
@@ -142,13 +147,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.solirius.advanced.library" />
       <option name="MAIN_CLASS_NAME" value="com.solirius.advanced.library.LibraryTest" />
-      <option name="METHOD_NAME" value="whenReturningBook_returnsFalse_whenSqlExceptionIsThrown" />
+      <option name="METHOD_NAME" value="whenSearchingForBooksByAuthor_whereAuthorHasTwoBooks_returnsCorrectBooks_sortedAlphabetically" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LibraryTest.whenSearchingForBooksByAuthor_whereAuthorTwoBooks_AndThereIsASecondAuthor_returnsCorrectBooks_sortedAlphabetically" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-guild-candidate-test" />
       <extension name="coverage">
         <pattern>
@@ -157,8 +162,9 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.solirius.advanced.library" />
-      <option name="MAIN_CLASS_NAME" value="com.solirius.advanced.library.MainTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="com.solirius.advanced.library.LibraryTest" />
+      <option name="METHOD_NAME" value="whenSearchingForBooksByAuthor_whereAuthorTwoBooks_AndThereIsASecondAuthor_returnsCorrectBooks_sortedAlphabetically" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -212,11 +218,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BookTest" />
-        <item itemvalue="JUnit.MainTest" />
-        <item itemvalue="JUnit.LibraryTest" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.LibraryTest.whenReturningBook_returnsFalse_whenSqlExceptionIsThrown" />
+        <item itemvalue="JUnit.LibraryTest" />
+        <item itemvalue="JUnit.LibraryTest.whenSearchingForBooksByAuthor_whereAuthorTwoBooks_AndThereIsASecondAuthor_returnsCorrectBooks_sortedAlphabetically" />
+        <item itemvalue="JUnit.LibraryTest.whenSearchingForBooksByAuthor_whereAuthorHasTwoBooks_returnsCorrectBooks_sortedAlphabetically" />
+        <item itemvalue="JUnit.BookTest" />
       </list>
     </recent_temporary>
   </component>
@@ -236,12 +242,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java</url>
-          <line>117</line>
+          <line>118</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Library.java</url>
-          <line>149</line>
+          <line>153</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -258,6 +264,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/solirius/advanced/library/Main.java</url>
           <line>227</line>
           <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/solirius/advanced/library/LibraryTest.java</url>
+          <line>379</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

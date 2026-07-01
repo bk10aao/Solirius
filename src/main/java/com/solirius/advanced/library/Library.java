@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -89,8 +90,8 @@ public class Library {
         }
         String query = "INSERT INTO books (title, author, isBorrowed) VALUES (?, ?, ?)";
         try(var preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, book.getTitle());
-            preparedStatement.setString(2, book.getAuthor());
+            preparedStatement.setString(1, book.getTitle().trim());
+            preparedStatement.setString(2, book.getAuthor().trim());
             preparedStatement.setBoolean(3, book.isBorrowed());
             preparedStatement.executeUpdate();
             books.add(book);
@@ -129,7 +130,7 @@ public class Library {
     public Book searchBook(final String title) throws BookNotFoundException, InvalidParameterException {
         validateTitle(title);
         return books.stream()
-            .filter(book -> book.getTitle().equalsIgnoreCase(title))
+            .filter(book -> book.getTitle().equalsIgnoreCase(title.trim()))
             .findFirst()
             .orElseThrow(() -> new BookNotFoundException(BOOK_NOT_FOUND));
     }
@@ -144,7 +145,10 @@ public class Library {
      */
     public List<Book> getBooksByAuthor(final String author) throws InvalidParameterException, AuthorNotFoundException {
         validateAuthor(author);
-        List<Book> authorBooks =  books.stream().filter(book -> book.getAuthor().equalsIgnoreCase(author)).collect(Collectors.toList());
+        List<Book> authorBooks =  books.stream()
+                                        .filter(book -> book.getAuthor().equalsIgnoreCase(author.trim()))
+                                        .sorted(Comparator.comparing(Book::getTitle, String::compareToIgnoreCase))
+                                        .collect(Collectors.toList());
         if(authorBooks.isEmpty()) {
             throw new AuthorNotFoundException("No books found for author: " + author);
         }
@@ -162,7 +166,7 @@ public class Library {
      */
     public boolean borrowBook(final String title) throws BookNotFoundException, AlreadyBorrowedException, InvalidParameterException {
         validateTitle(title);
-        Book book = searchBook(title);
+        Book book = searchBook(title.trim());
         if (book.isBorrowed()) {
             throw new AlreadyBorrowedException(BOOK_ALREADY_BORROWED);
         }
@@ -188,7 +192,8 @@ public class Library {
      * @throws NotBorrowedException if the book is no borrowed
      */
     public boolean returnBook(final String title) throws BookNotFoundException, NotBorrowedException, InvalidParameterException {
-        Book book = searchBook(title);
+        validateTitle(title);
+        Book book = searchBook(title.trim());
         if (!book.isBorrowed()) {
             throw new NotBorrowedException(BOOK_NOT_BORROWED);
         }
@@ -205,20 +210,16 @@ public class Library {
     }
 
     private static void validateTitle(final String title) throws InvalidParameterException {
-        if(title == null) {
+        if(title == null)
             throw new InvalidParameterException("Title must not be null.");
-        }
-        if(title.isBlank()) {
-            throw new InvalidParameterException("Title must not be blank.");
-        }
+        if(title.trim().isBlank())
+            throw new InvalidParameterException("Tile must not be blank.");
     }
 
     private static void validateAuthor(final String author) throws InvalidParameterException {
-        if(author == null) {
+        if(author == null)
             throw new InvalidParameterException("Author must not be null.");
-        }
-        if(author.isBlank()) {
+        if(author.trim().isBlank())
             throw new InvalidParameterException("Author must not be blank.");
-        }
     }
 }

@@ -375,7 +375,7 @@ class LibraryTest {
     }
 
     @Test
-    void whenSearchingForBooksByAuthor_whereAuthorHasTwoBooks_returnsCorrectBooks() throws InvalidParameterException, AuthorNotFoundException {
+    void whenSearchingForBooksByAuthor_whereAuthorHasTwoBooks_returnsCorrectBooks_sortedAlphabetically() throws InvalidParameterException, AuthorNotFoundException {
         library = new Library(mockConnection);
         Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "Jon Skeet");
         Book bookTwo = new Book("C# In deoth", "Jon Skeet");
@@ -384,15 +384,16 @@ class LibraryTest {
         List<Book> authorBooks = library.getBooksByAuthor("Jon Skeet");
         assertEquals(2, authorBooks.size());
         Book returnBook = authorBooks.get(0);
-        assertEquals("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", returnBook.getTitle());
+        assertEquals("C# In deoth", returnBook.getTitle());
         assertEquals("Jon Skeet", returnBook.getAuthor());
         Book returnBookTwo = authorBooks.get(1);
-        assertEquals("C# In deoth", returnBookTwo.getTitle());
+        assertEquals("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", returnBookTwo.getTitle());
         assertEquals("Jon Skeet", returnBookTwo.getAuthor());
+
     }
 
     @Test
-    void whenSearchingForBooksByAuthor_whereAuthorTwoBooks_AndThereIsASecondAuthor_returnsCorrectBooks() throws InvalidParameterException, AuthorNotFoundException {
+    void whenSearchingForBooksByAuthor_whereAuthorTwoBooks_AndThereIsASecondAuthor_returnsCorrectBooks_sortedAlphabetically() throws InvalidParameterException, AuthorNotFoundException {
         library = new Library(mockConnection);
         Book book = new Book("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", "Jon Skeet");
         Book bookTwo = new Book("C# In deoth", "Jon Skeet");
@@ -402,12 +403,12 @@ class LibraryTest {
         library.addBook(bookThree);
         List<Book> authorBooksOne = library.getBooksByAuthor("Jon Skeet");
         assertEquals(2, authorBooksOne.size());
-        Book returnBook = authorBooksOne.get(0);
-        assertEquals("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", returnBook.getTitle());
-        assertEquals("Jon Skeet", returnBook.getAuthor());
-        Book returnBookTwo = authorBooksOne.get(1);
+        Book returnBookTwo = authorBooksOne.get(0);
         assertEquals("C# In deoth", returnBookTwo.getTitle());
         assertEquals("Jon Skeet", returnBookTwo.getAuthor());
+        Book returnBook = authorBooksOne.get(1);
+        assertEquals("Software Mistakes and Tradeoffs: How to Make Good Programming Decisions", returnBook.getTitle());
+        assertEquals("Jon Skeet", returnBook.getAuthor());
         List<Book> authorBooksTwo = library.getBooksByAuthor("Robert C. Martin");
         Book returnedBookThree = authorBooksTwo.get(0);
         assertEquals("Clean Code", returnedBookThree.getTitle());
