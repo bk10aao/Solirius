@@ -80,9 +80,9 @@ public class Library {
     /**
      * Adds a book to the library.
      *
-     * @param book the book to add
-     * @return true if successful, otherwise false
-     * @throws InvalidParameterException if the book is null
+     * @param book the book to add.
+     * @return true if successful, otherwise false.
+     * @throws InvalidParameterException if the book is null.
      */
     public boolean addBook(final Book book) throws InvalidParameterException {
         if(book == null) {
@@ -105,7 +105,7 @@ public class Library {
     /**
      * Gets a list of available books.
      *
-     * @return a list of books that are not borrowed
+     * @return a list of books that are not borrowed.
      */
     public List<Book> viewAvailableBooks() {
         return books.stream().filter(book -> !book.isBorrowed()).collect(Collectors.toList());
@@ -123,9 +123,9 @@ public class Library {
     /**
      * Searches for a book by its title.
      *
-     * @param title the title of the book to search
-     * @return the book if found, otherwise throws BookNotFoundException
-     * @throws InvalidParameterException if title is null, empty or blank
+     * @param title the title of the book to search for.
+     * @return the book if found, otherwise throws BookNotFoundException.
+     * @throws InvalidParameterException if title is null, empty or blank.
      */
     public Book searchBook(final String title) throws BookNotFoundException, InvalidParameterException {
         validateTitle(title);
@@ -138,10 +138,10 @@ public class Library {
     /**
      * Gets all books by author.
      *
-     * @param author the author of the books to get from library
-     * @return a list of books by the author
-     * @throws InvalidParameterException if author is null, empty ot blank
-     * @throws AuthorNotFoundException if author is not found
+     * @param author the author of the books to get from library.
+     * @return a list of books by the author.
+     * @throws InvalidParameterException if author is null, empty ot blank.
+     * @throws AuthorNotFoundException if author is not found.
      */
     public List<Book> getBooksByAuthor(final String author) throws InvalidParameterException, AuthorNotFoundException {
         validateAuthor(author);
@@ -158,11 +158,11 @@ public class Library {
     /**
      * Borrows a book by its title.
      *
-     * @param title the title of the book to borrow
-     * @return true if the book is successfully borrowed
-     * @throws AlreadyBorrowedException if book is already borrowed
-     * @throws InvalidParameterException if title is null or is blank
-     * @throws BookNotFoundException if book is not found
+     * @param title the title of the book to borrow.
+     * @return true if the book is successfully borrowed.
+     * @throws AlreadyBorrowedException if book is already borrowed.
+     * @throws InvalidParameterException if title is null or is blank.
+     * @throws BookNotFoundException if book is not found.
      */
     public boolean borrowBook(final String title) throws BookNotFoundException, AlreadyBorrowedException, InvalidParameterException {
         validateTitle(title);
@@ -185,11 +185,11 @@ public class Library {
     /**
      * Returns a book by its title.
      *
-     * @param title the title of the book to return
-     * @return true if the book is successfully returned, otherwise false
-     * @throws InvalidParameterException if title is null or is blank
-     * @throws BookNotFoundException if no book exists with title
-     * @throws NotBorrowedException if the book is no borrowed
+     * @param title the title of the book to return.
+     * @return true if the book is successfully returned, otherwise false.
+     * @throws InvalidParameterException if title is null or is blank.
+     * @throws BookNotFoundException if no book exists with title.
+     * @throws NotBorrowedException if the book is no borrowed.
      */
     public boolean returnBook(final String title) throws BookNotFoundException, NotBorrowedException, InvalidParameterException {
         validateTitle(title);
