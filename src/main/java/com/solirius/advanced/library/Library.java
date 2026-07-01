@@ -213,7 +213,7 @@ public class Library {
         if(title == null)
             throw new InvalidParameterException("Title must not be null.");
         if(title.trim().isBlank())
-            throw new InvalidParameterException("Tile must not be blank.");
+            throw new InvalidParameterException("Title must not be blank.");
     }
 
     private static void validateAuthor(final String author) throws InvalidParameterException {

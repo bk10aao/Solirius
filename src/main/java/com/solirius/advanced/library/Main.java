@@ -100,7 +100,7 @@ public final class Main {
     public static final String EXIT = "Thank you for using the Library Management System!";
     public static final String RETURNED = "Book returned successfully!";
     public static final String BORROWED = "Book borrowed successfully!";
-    public static final String TITLE_AUTHOR_SEARCH = "Enter the title or author of the book to search: ";
+    public static final String TITLE_AUTHOR_SEARCH = "Enter the title of the book to search: ";
     public static final String TITLE_BORROW = "Enter the title of the book to borrow: ";
     public static final String TITLE_RETURN = "Enter the title of the book to return: ";
     public static final String BOOKS_BY_AUTHOR = "Enter author to find books by: ";
