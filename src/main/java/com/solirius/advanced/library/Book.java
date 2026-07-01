@@ -31,8 +31,8 @@ public class Book {
      */
     public Book(final String theTitle, final String theAuthor) throws InvalidParameterException {
         validateBook(theTitle, theAuthor);
-        this.title = theTitle;
-        this.author = theAuthor;
+        this.title = theTitle.trim();
+        this.author = theAuthor.trim();
         this.isBorrowed = false;
     }
 
