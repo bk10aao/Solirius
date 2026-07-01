@@ -137,103 +137,29 @@ public final class Main {
 
         while (running) {
             System.out.println(MENU);
-            int choice = validateChoices(scanner, 1, 8);
+            int choice = validateChoices(scanner, 8);
             scanner.nextLine(); // Consume newline
-            String title;
             switch (choice) {
                 case ADD_A_BOOK_OPTION:
-                    System.out.print(ENTER_TITLE);
-                    title = scanner.nextLine();
-                    System.out.print(ENTER_AUTHOR);
-                    String author = scanner.nextLine();
-                    boolean success = false;
-                    try {
-                        success = library.addBook(new Book(title, author));
-                    } catch (InvalidParameterException e) {
-                        System.out.println(e.getMessage());
-                    }
-                    System.out.println(success ? BOOK_ADDED : BOOK_NOT_ADDED);
+                    addBook(scanner);
                     break;
                 case LIST_ALL_BOOKS:
-                    System.out.println(SORT_MENU);
-                    int sortAllChoice = validateChoices(scanner, 1, 2);
-                    System.out.println(ALL_BOOKS);
-                    switch (sortAllChoice) {
-                        case AUTHOR:
-                            library.viewAllBooks().stream()
-                                .sorted(Comparator.comparing(Book::getAuthor))
-                                .forEach(System.out::println);
-                            break;
-                        case TITLE:
-                            library.viewAllBooks().stream()
-                                .sorted(Comparator.comparing(Book::getTitle))
-                                .forEach(System.out::println);
-                            break;
-                        default:
-                            System.out.println(INVALID);
-                    }
+                    listAllBooks(scanner);
                     break;
                 case LIST_AVAILABLE_BOOKS:
-                    System.out.println(SORT_MENU);
-                    int sortAvailableChoice = validateChoices(scanner, 1, 2);
-                    System.out.println(AVAILABLE_BOOKS);
-                    switch (sortAvailableChoice) {
-                        case AUTHOR:
-                            library.viewAvailableBooks().stream()
-                                .sorted(Comparator.comparing(Book::getAuthor))
-                                .forEach(System.out::println);
-                            break;
-                        case TITLE:
-                            library.viewAvailableBooks().stream()
-                                .sorted(Comparator.comparing(Book::getTitle))
-                                .forEach(System.out::println);
-                            break;
-                        default:
-                            System.out.println(INVALID);
-                    }
+                    listAvailableBooks(scanner);
                     break;
                 case SEARCH_BOOK_OPTION:
-                    System.out.print(TITLE_AUTHOR_SEARCH);
-                    title = scanner.nextLine();
-                    try {
-                        Book book = library.searchBook(title);
-                        System.out.println(book);
-                    } catch (BookNotFoundException bookNotFoundException) {
-                        System.out.println(bookNotFoundException.getMessage());
-                    } catch (InvalidParameterException invalidParameterException) {
-                        System.out.printf(invalidParameterException.getMessage());
-                    }
+                    searchForBook(scanner);
                     break;
                 case BORROW_BOOK_OPTION:
-                    System.out.print(TITLE_BORROW);
-                    title = scanner.nextLine();
-                    try {
-                        library.borrowBook(title);
-                        System.out.println(BORROWED);
-                    } catch (BookNotFoundException | AlreadyBorrowedException | InvalidParameterException e) {
-                        System.out.println(e.getMessage());
-                    }
+                    borrowBook(scanner);
                     break;
                 case RETURN_BOOK_OPTION:
-                    System.out.print(TITLE_RETURN);
-                    title = scanner.nextLine();
-                    try {
-                        library.returnBook(title);
-                        System.out.println(RETURNED);
-                    } catch (BookNotFoundException | NotBorrowedException | InvalidParameterException e) {
-                        System.out.println(e.getMessage());
-                    }
+                    returnBook(scanner);
                     break;
                 case GET_AUTHOR_BOOKS:
-                    System.out.print(BOOKS_BY_AUTHOR);
-                    author = scanner.nextLine();
-                    try {
-                        library.getBooksByAuthor(author).stream()
-                                .sorted(Comparator.comparing(Book::getAuthor))
-                                .forEach(System.out::println);
-                    } catch (InvalidParameterException | AuthorNotFoundException e) {
-                        System.out.println(e.getMessage());
-                    }
+                    getAuthorBooks(scanner);
                     break;
                 case EXIT_OPTION:
                     running = false;
@@ -247,13 +173,116 @@ public final class Main {
         scanner.close();
     }
 
-    private static int validateChoices(Scanner scanner, int min, int max) {
+    private static void getAuthorBooks(final Scanner scanner) {
+        System.out.print(BOOKS_BY_AUTHOR);
+        String author = scanner.nextLine();
+        try {
+            library.getBooksByAuthor(author).stream()
+                    .sorted(Comparator.comparing(Book::getAuthor))
+                    .forEach(System.out::println);
+        } catch (InvalidParameterException | AuthorNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void returnBook(final Scanner scanner) {
+        String title;
+        System.out.print(TITLE_RETURN);
+        title = scanner.nextLine();
+        try {
+            library.returnBook(title);
+            System.out.println(RETURNED);
+        } catch (BookNotFoundException | NotBorrowedException | InvalidParameterException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void borrowBook(final Scanner scanner) {
+        String title;
+        System.out.print(TITLE_BORROW);
+        title = scanner.nextLine();
+        try {
+            library.borrowBook(title);
+            System.out.println(BORROWED);
+        } catch (BookNotFoundException | AlreadyBorrowedException | InvalidParameterException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void searchForBook(final Scanner scanner) {
+        String title;
+        System.out.print(TITLE_AUTHOR_SEARCH);
+        title = scanner.nextLine();
+        try {
+            Book book = library.searchBook(title);
+            System.out.println(book);
+        } catch (BookNotFoundException | InvalidParameterException bookNotFoundException) {
+            System.out.println(bookNotFoundException.getMessage());
+        }
+    }
+
+    private static void listAvailableBooks(final Scanner scanner) {
+        System.out.println(SORT_MENU);
+        int sortAvailableChoice = validateChoices(scanner, 2);
+        System.out.println(AVAILABLE_BOOKS);
+        switch (sortAvailableChoice) {
+            case AUTHOR:
+                library.viewAvailableBooks().stream()
+                    .sorted(Comparator.comparing(Book::getAuthor))
+                    .forEach(System.out::println);
+                break;
+            case TITLE:
+                library.viewAvailableBooks().stream()
+                    .sorted(Comparator.comparing(Book::getTitle))
+                    .forEach(System.out::println);
+                break;
+            default:
+                System.out.println(INVALID);
+        }
+    }
+
+    private static void listAllBooks(final Scanner scanner) {
+        System.out.println(SORT_MENU);
+        int sortAllChoice = validateChoices(scanner, 2);
+        System.out.println(ALL_BOOKS);
+        switch (sortAllChoice) {
+            case AUTHOR:
+                library.viewAllBooks().stream()
+                    .sorted(Comparator.comparing(Book::getAuthor))
+                    .forEach(System.out::println);
+                break;
+            case TITLE:
+                library.viewAllBooks().stream()
+                    .sorted(Comparator.comparing(Book::getTitle))
+                    .forEach(System.out::println);
+                break;
+            default:
+                System.out.println(INVALID);
+        }
+    }
+
+    private static void addBook(final Scanner scanner) {
+        String title;
+        System.out.print(ENTER_TITLE);
+        title = scanner.nextLine();
+        System.out.print(ENTER_AUTHOR);
+        String author = scanner.nextLine();
+        boolean success = false;
+        try {
+            success = library.addBook(new Book(title, author));
+        } catch (InvalidParameterException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println(success ? BOOK_ADDED : BOOK_NOT_ADDED);
+    }
+
+    private static int validateChoices(final Scanner scanner, int max) {
         int choice = 0;
         boolean validChoice = false;
         while (!validChoice) {
             try {
                 choice = scanner.nextInt();
-                if (choice < min || choice > max) {
+                if (choice < 1 || choice > max) {
                     throw new InputMismatchException();
                 }
                 validChoice = true;

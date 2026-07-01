@@ -150,7 +150,7 @@ public class Library {
                                         .sorted(Comparator.comparing(Book::getTitle, String::compareToIgnoreCase))
                                         .collect(Collectors.toList());
         if(authorBooks.isEmpty()) {
-            throw new AuthorNotFoundException("No books found for author: " + author);
+            throw new AuthorNotFoundException("No books found for author: " + author.trim());
         }
         return new ArrayList<>(authorBooks);
     }
