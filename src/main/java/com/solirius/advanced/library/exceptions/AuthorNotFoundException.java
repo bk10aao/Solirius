@@ -5,7 +5,7 @@ package com.solirius.advanced.library.exceptions;
  */
 public class AuthorNotFoundException extends Exception {
     /**
-     * Constructs a new AlreadyBorrowedException with the specified message.
+     * Constructs a new AuthorNotFoundException with the specified message.
      *
      * @param message the detail message
      */
